@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gpwear",
+            "outputPath": "dist/mountainWorld2",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -29,6 +29,7 @@
               "src/app/js/jquery.min.js",
               "src/app/js/bootstrap.bundle.min.js",
               "src/app/js/adminlte.min.js",
+
 
               "src/app/js/LeafletMap/libs/leaflet-src.js",
               "src/app/js/LeafletMap/src/Leaflet.draw.js",
@@ -52,9 +53,6 @@
               "src/app/js/LeafletMap/src/edit/handler/Edit.CircleMarker.js",
               "src/app/js/LeafletMap/src/edit/handler/Edit.Circle.js",
               "src/app/js/position/openStreeMap/openStreeMap.js",
-              "src/app/js/position/map8/gomp.js",
-              "src/app/js/position/map8/turf.min.js",
-              "src/app/js/position/map8/map8.js",
               "src/app/js/errorResponse.js"
             ],
             "allowedCommonJsDependencies": [

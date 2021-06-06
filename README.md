@@ -1,6 +1,6 @@
 [![Run on Repl.it](https://repl.it/badge/github/erdkse/adminlte-3-angular)](https://repl.it/github/erdkse/adminlte-3-angular)
 
-# AdminLTE 3 GpWear
+# AdminLTE 3 mountainWorld2.0
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
 

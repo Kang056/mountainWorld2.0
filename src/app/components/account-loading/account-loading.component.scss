@@ -6,24 +6,18 @@
   width: 100%;
   height: 100%;
   z-index: 9999;
+  background: rgba(255, 255, 255, .5);
   // background: url(../../../assets/img/eleplo/eleploBackground.jpg);
   .loaderText{
     position: fixed;
     top: 65%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    color: #10548a;
+    color: rgb(48,50,49);
     animation: logo 2s infinite 1s;
     font-size: 2rem;
 
-    letter-spacing: 20px;
-    font-size: 2em;
-    // cursor: default;
-    background: linear-gradient(90deg, rgb(124, 156, 245) 0%, #10548a 35%, rgba(247,247,247,1) 35%, rgba(247,247,247,1) 40%, #10548a 40%, #10548a 100%);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradiantShift 3s infinite cubic-bezier(0,.33,1,.69);
-    background-size: 400% 400%;
+
   }
   .loader{
     position: fixed;
@@ -52,8 +46,8 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      border: 5px solid rgba(150, 209, 236, .5);
-      box-shadow: 0 0 50px rgba(68, 164, 209, 0.5), inset 0 0 50px rgba(150, 209, 236, .5);
+      border: 5px solid rgba(173,245,198,.8);
+      box-shadow: 0 0 50px rgba(173,245,198,.9), inset 0 0 50px rgba(173,245,198,.8);
   }
   .loader:after {
       z-index: 1;

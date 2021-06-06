@@ -1,17 +1,17 @@
 import { ResponseService } from './../../../services/response.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from './../../../services/login.service';
-import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, AfterContentInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-declare let $: any; // 當然 let 也可以
+import Parallax from 'parallax-js';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
   public isAuthLoading = false;
   token: string;
   rememberMe: any;
@@ -341,16 +341,22 @@ export class LoginComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('permissions', JSON.stringify(pass));
   }
 
-  openView(): void {
-    const scene = document.getElementById('scene');
-    const parallaxInstance = new Parallax(scene);
-  }
+
   ngOnInit(): void {
-    // this.openView();
+
     this.renderer.addClass(document.querySelector('app-root'), 'login-page');
     if (localStorage.getItem('remberMe')) {
       this.rememberMe = JSON.parse(localStorage.getItem('remberMe'));
     }
+  }
+
+  ngAfterContentInit() {
+
+    const scene = document.getElementById('scene');
+    const parallaxInstance = new Parallax(scene, {
+      relativeInput: true
+    });
+
   }
   ngOnDestroy(): void {
     this.renderer.removeClass(document.querySelector('app-root'), 'login-page');

@@ -1,15 +1,15 @@
 @import '../../../scss/base/base.scss';
 .btn{
-  background: $white;
+  background: $mainColor;
   border: unset;
   width: 100%;
-  color: $mainColor;
+  color: $white;
   // text-shadow: 1px 1px 2px rgb(233, 43, 43);
   &:hover{
     // box-shadow: 0 0px 2px $black ;
     transform: translateY(2px);
-    background: $white;
-    color: $mainColor;
+    background: $mainColorHover;
+    color: $white;
   }
   span{
     color: $white;

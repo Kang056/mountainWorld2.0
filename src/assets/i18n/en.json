@@ -1,7 +1,9 @@
 {
+  "mountainWorld": "Mountain World",
   "login": "Login",
-  "map": " Map",
-  "ruler": " Ruler",
+  "map": "Map",
+  "ruler": "Ruler",
   "account": "Account",
-  "mountain": "Mountain"
+  "mountain": "Mountain",
+  "rememberMe": "Remember"
 }

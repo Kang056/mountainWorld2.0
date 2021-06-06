@@ -1,33 +1,34 @@
 <app-account-loading *ngIf="isLoadind"></app-account-loading>
-<div class="login-box">
-  <div class="section " id="section0">
+<div class="fullpage">
+  <div class="section" id="section0">
     <div id="container" class="wrapper">
       <ul id="scene" class="scene unselectable"
         data-friction-x="0.1"
         data-friction-y="0.1"
         data-scalar-x="25"
         data-scalar-y="15">
+        <li class="layer" data-depth="0.10">
+          <div class="sunny sunnyShadowIn"></div>
+          <div class="sunny sunnyShadowOut"></div>
+          <div class="sunny"></div>
+        </li>
+        <li class="layer" data-depth="0.10"><div class="mountainSmalRight"></div></li>
+        <li class="layer" data-depth="0.15"><div class="mountainLeft"></div></li>
+        <li class="layer" data-depth="0.10"><div class="mountainSmalLeft"></div></li>
+        <li class="layer" data-depth="0.15"><div class="mountainRight"></div></li>
+        <li class="layer" data-depth="0.20"><div class="mountainCenter"></div></li>
         <li class="layer" data-depth="0.05"><div class="bannerTitle"></div></li>
-        <li class="layer" data-depth="0.05"><div class="lightLeft"></div></li>
-        <li class="layer" data-depth="0.10"><h1 id="bannerText" class="bannerText">
-          <p>芯華：</p>
-          <p>這是我第4次參與妳的生日(往後的生日我也打算都全包囉～)</p>
-          <p>無奈疫情當前,只好先止住想跟妳一起慶祝的芯情</p>
-          <p>不過，還是不免俗的挑了一款耳額溫計當這次的生日禮物</p>
-          <p>記得時常檢測體溫唷，備在家裡，希望能派上用場</p>
-          <br>
-          <p>祝妳生日快樂~ 愛妳唷~</p>
-        </h1></li>
-        <li class="layer" data-depth="0.35"><div class="howard depth-60"></div></li>
-        <li class="layer" data-depth="0.35"><div class="monica depth-60"></div></li>
-        <li class="layer" data-depth="0.15"><div class="happyBirthday depth-60"></div></li>
+        <li class="layer" data-depth="0.015"><div class="stone"></div></li>
+        <li class="layer" data-depth="0.02"><div class="hiker"></div></li>
+        <!-- <li class="layer" data-depth="0.10"><h1 id="bannerText" class="bannerText">
+          <p>台灣山林</p>
+        </h1></li> -->
       </ul>
     </div>
   </div>
-  <div class="login-logo">
-    <div class="logo"><img src="assets/img/gpwear/gpwearLogo.png" alt=""></div>
-    <div class="title"><img src="assets/img/gpwear/gpwearName.png" alt=""></div>
-  </div>
+</div>
+
+<div class="login-box">
   <div class="card">
     <div class="card-body login-card-body">
       <form #loginForm="ngForm">

@@ -1,40 +1,45 @@
-// @import '../base/base.scss';
 @mixin checkbox {
-  p {
-    input {
-      margin-right: 10px;
-      display: inline;
-      width: 20px;
-      height: 16px;
+  p{
+    text-align: left;
+    color: $matchColor;
+  }
+  .itemBox{
+    overflow: auto;
+    height: 120px;
+    label{
+      display: block;
+      align-items: center;
+      cursor: pointer;
+      margin: 5px 0;
+      input{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        vertical-align: middle;
+        &:checked {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-color: $mainColor;
+          position: relative;
+        }
+        &:checked::after {
+          content: "\2713";
+          position: absolute;
+          color: $white;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          left: 5px;
+        }
+      }
+      span {
+        vertical-align: middle;
+        margin: 0 20px 0 5px;
+        color: $matchColor;
+        font-weight: 100;
+      }
     }
   }
-}
 
-@mixin cbx($po1: '', $po2: '') {
-  position: relative;
-  &::before {
-    position: absolute;
-    content: url($po1);
-    font-size: 0;
-    width: 20px;
-    height: 20px;
-    background: white;
-  }
-  &:checked::before {
-    content: url($po2);
-  }
-}
-%cbx {
-  position: relative;
-  &::before {
-    position: absolute;
-    content: url('../../assets/img/gpwear/pageIcon/checkbox.svg');
-    font-size: 0;
-    width: 20px;
-    height: 20px;
-    background: white;
-  }
-  &:checked::before {
-    content: url('../../assets/img/gpwear/pageIcon/checkboxChecked.svg');
-  }
 }

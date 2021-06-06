@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'ruler', component: RulerComponent },
       { path: 'account', component: AccountComponent },
       { path: 'mountain', component: MountainComponent },
-      { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '**', redirectTo: 'map', pathMatch: 'full' },
     ],
   },
 ];

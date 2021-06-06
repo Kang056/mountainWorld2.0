@@ -7,9 +7,6 @@
   }
   .formBox{
     @include actionBox;
-    .cbx {@extend %cbx;
-      // margin-left: 10px;
-    }
     form{
       @include checkbox;
 

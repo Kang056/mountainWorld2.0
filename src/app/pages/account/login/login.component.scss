@@ -1,18 +1,167 @@
 @import '../../../../scss/main.scss';
-.login-box{
-  // height: 100vh; rgb(0,25,41)
+$titleColor: #004A9D;
+$textColor: #333333; //rgb(124, 124, 124);
+// $textFont: 'Noto Sans TC', sans-serif, 'arial', "微軟正黑體";
+$colorEleplo: #3C9ED6; //rgb(60, 158, 214);
+$colorGpwear: rgb(19,68,97);
+$color17Goft: rgb(31,148,176);
+$colorNFnavi: rgb(123,82,0);
+@mixin contentText {
+  color: $textColor;
+  font-size: 1rem;
+  text-align: left;
+  line-height: 2rem;
+}
+@mixin absoluteCenter {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  // padding: 10px;
-  .login-logo{
-    .logo{
-      margin-bottom: 30px;
-      img{
-        height: 170px;
+  transform: translateX(-50%) translateY(-50%);
+}
+.fullpage{
+  font-size: 12px;
+  margin: 0;
+  background: url('../../../../assets/img/home/cloud.svg');
+  background-repeat: no-repeat;
+  background-size: 180%;
+  color: #FFFFFF;
+  #section0{
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    .wrapper {
+      .scene{
+        display: block;
+        height: 100vh;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: 65%;
+        background-position: center 60%;
+        .layer {
+          display: block;
+          height: 90vh;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          position: absolute;
+          .sunny{
+            width: 150px;
+            height: 150px;
+            background: rgb(255,255,227);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            left: 52%;
+            top: 25vh;
+          }
+          .sunnyShadowIn{
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,227, .5);
+            animation: sunnyShadowIn 5s 0.1s infinite linear;
+          }
+          .sunnyShadowOut{
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,227, .3);
+            animation: sunnyShadowOut 5s 0.1s infinite linear;
+          }
+
+          .mountainSmalLeft{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 10%;
+            top: 65vh;
+            background-image: url('../../../../assets/img/home/mountainCenter.png');
+            background-size: 254px 218px;
+            height: 218px;
+            width: 254px;
+          }
+          .mountainSmalRight{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 80%;
+            top: 60vh;
+            background-image: url('../../../../assets/img/home/mountainCenter.png');
+            background-size: 254px 218px;
+            height: 218px;
+            width: 254px;
+          }
+          .mountainLeft{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 20%;
+            top: 60vh;
+            background-image: url('../../../../assets/img/home/mountainCenter.png');
+            background-size: 382px 327px;
+            height: 327px;
+            width: 382px;
+          }
+          .mountainRight{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 55%;
+            top: 60vh;
+            background-image: url('../../../../assets/img/home/mountainCenter.png');
+            background-size: 382px 327px;
+            height: 327px;
+            width: 382px;
+          }
+          .mountainCenter{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 35%;
+            top: 60vh;
+            background-image: url('../../../../assets/img/home/mountainCenter.png');
+            background-size: 573px 490px;
+            height: 490px;
+            width: 573px;
+          }
+          .bannerTitle{
+            background-size: 1107px 146px;
+            height: 146px;
+            width: 1107px;
+            background-image: url('../../../../assets/img/home/logo/title_light.png');
+            background-repeat: no-repeat;
+            @include absoluteCenter;
+            left: 50%;
+            top: 20vh;
+          }
+          .stone{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 7%;
+            top: 98vh;
+            background-image: url('../../../../assets/img/home/stone.png');
+            background-size: 300px 300px;
+            height: 300px;
+            width: 300px;
+          }
+          .hiker{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 10%;
+            top: 85vh;
+            background-image: url('../../../../assets/img/home/hiker.png');
+            background-size: 119px 205px;
+            height: 205px;
+            width: 119px;
+          }
+        }
       }
     }
+  }
+}
+.login-box{
+  animation: upDoen 6s 0.1s infinite linear;
+  position: absolute;
+  right: 10%;
+  bottom: 20%;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .5);
+  .login-logo{
     .title{
       img{
         width: 250px;
@@ -22,6 +171,14 @@
   .card{
     background: $transparent;
     box-shadow: unset;
+    .logo{
+      margin: 0 auto;
+      padding: 10px;
+      img{
+        width: 200px;
+
+      }
+    }
     .card-body{
       background: $transparent;
       form{
@@ -49,11 +206,12 @@
               background-color: $white;
             }
             label{
-              color: $white;
+              color: $fontColor;
             }
             label::before{
-              border: 1px solid $white;
+              border: 1px solid $fontColor;
               border-radius: 5px;
+              background: $mainColor;
             }
           }
           .loginBtn{
@@ -72,6 +230,11 @@
 
 @media (max-width: 812px) {
   .login-box{
+    // position: unset;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    bottom: 0;
+    animation: unset;
     .login-logo{
       .logo{
         display: none;
@@ -82,5 +245,77 @@
         }
       }
     }
+  }
+}
+.image {
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image > img {
+  position: absolute;
+  top: -200px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 200px);
+  object-fit: cover;
+}
+
+
+
+
+@keyframes upDoen {
+  0% {
+    -webkit-transform: translate3d(0,15%,0);
+    -moz-transform: translate3d(0,15%,0);
+    transform: translate3d(0,15%,0);
+  }
+  50% {
+    -webkit-transform: translate3d(0,0%,0);
+    -moz-transform: translate3d(0,0%,0);
+    transform: translate3d(0,0%,0);
+  }
+  100% {
+    -webkit-transform: translate3d(0,15%,0);
+    -moz-transform: translate3d(0,15%,0);
+    transform: translate3d(0,15%,0);
+  }
+}
+
+
+
+@keyframes sunnyShadowIn {
+  0% {
+    background: rgba(255,255,227, .5);
+    width: 200px;
+    height: 200px;
+  }
+  50% {
+    background: rgba(255,255,227, .9);
+    width: 210px;
+    height: 210px;
+  }
+  100% {
+    background: rgba(255,255,227, .5);
+    width: 200px;
+    height: 200px;
+  }
+}
+@keyframes sunnyShadowOut {
+  0% {
+    background: rgba(255,255,227, .3);
+    width: 250px;
+    height: 250px;
+  }
+  50% {
+    background: rgba(255,255,227, .4);
+    width: 300px;
+    height: 300px;
+  }
+  100% {
+    background: rgba(255,255,227, .3);
+    width: 250px;
+    height: 250px;
   }
 }

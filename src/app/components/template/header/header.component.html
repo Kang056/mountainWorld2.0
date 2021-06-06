@@ -1,31 +1,33 @@
 <nav class=" navbar navbar-expand navbar-light header">
-
+  <div class="logo">
+    <img src="assets/img/home/logo/logo.png" alt="">
+  </div>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['map']" routerLinkActive="active" title="{{ 'map' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/dashboard.svg"/>
-        <img class="click" src="assets/img/gpwear/asideIcon/dashboardOn.svg"/>
+        <img class="icon" src="assets/img/gpwear/asideIcon/map.svg"/>
+        <img class="click" src="assets/img/gpwear/asideIcon/mapOn.svg"/>
         <p>{{ 'map' | translate }}</p>
       </a>
     </li>
     <li class="nav-item" *ngIf="permissions?.aside?.device">
       <a class="nav-link" [routerLink]="['ruler']" routerLinkActive="active" title="{{ 'ruler' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/project.svg" alt=""/>
-        <img class="click" src="assets/img/gpwear/asideIcon/projectOn.svg" alt=""/>
+        <img class="icon" src="assets/img/gpwear/asideIcon/ruler.svg" alt=""/>
+        <img class="click" src="assets/img/gpwear/asideIcon/rulerOn.svg" alt=""/>
         <p>{{ 'ruler' | translate }}</p>
       </a>
     </li>
     <li class="nav-item" *ngIf="permissions?.aside?.device">
       <a class="nav-link" [routerLink]="['account']" routerLinkActive="active" title="{{ 'account' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/device.svg" alt=""/>
-        <img class="click" src="assets/img/gpwear/asideIcon/deviceOn.svg" alt=""/>
+        <img class="icon" src="assets/img/gpwear/asideIcon/account.svg" alt=""/>
+        <img class="click" src="assets/img/gpwear/asideIcon/accountOn.svg" alt=""/>
         <p>{{ 'account' | translate }}</p>
       </a>
     </li>
     <li class="nav-item" *ngIf="permissions?.aside?.device">
       <a class="nav-link" [routerLink]="['mountain']" routerLinkActive="active" title="{{ 'mountain' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/device.svg" alt=""/>
-        <img class="click" src="assets/img/gpwear/asideIcon/deviceOn.svg" alt=""/>
+        <img class="icon" src="assets/img/gpwear/asideIcon/mountain.svg" alt=""/>
+        <img class="click" src="assets/img/gpwear/asideIcon/mountainOn.svg" alt=""/>
         <p>{{ 'mountain' | translate }}</p>
       </a>
     </li>
