@@ -1,0 +1,8 @@
+@import '../../../main.scss';
+div{
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background: linear-gradient(90deg, #0F192B  0%,#134461 45%, #174d6d 50%, #134461 55%, #060E10 100%);
+  overflow: hidden;
+}

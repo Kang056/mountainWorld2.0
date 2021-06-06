@@ -1,0 +1,14 @@
+<!-- 開燈箱: 'add', 'remove', 'edit', 'freeze', 'health', 'batch' -->
+<button *ngIf="type==='lightBox'" class="btn btn-{{ text }}" (click)="lightBoxOpen(data, text)">{{ text | translate }}</button>
+<!-- 執行(帶資料): 'doAdd', 'doEdit' -->
+<button *ngIf="type==='action'" class="btn btn-{{ text }}" (click)="doAction()" [disabled]="form.invalid">{{ text | translate }}</button>
+<!-- 執行(批次|客製): 'dobatch' -->
+<button *ngIf="type==='batch'" class="btn btn-{{ text }}" (click)="doAction()" [disabled]="!form">{{ text | translate }}</button>
+<!-- 執行(客製): 'custom' -->
+<button *ngIf="type==='custom'||type==='detail'||type==='bind'" class="btn btn-{{ text }}" (click)="doAction()" [disabled]="!form">{{ text | translate }}</button>
+<!-- 執行: 'doRemove', 'doFreeze', 'doUnfreeze' -->
+<button *ngIf="type==='remove'" class="btn btn-{{ text }}" (click)="doAction()">{{ text | translate }}</button>
+<!-- 關燈箱: 'cancel', 'close' -->
+<button *ngIf="type==='cancel'||type==='close'" class="btn btn-{{ text }}" (click)="lightBoxClose()">{{ text | translate }}</button>
+<!-- 路由轉址: 'map', 'layout' -->
+<!-- <button *ngIf="type=='map'" class="btn btn-{{ text }}" (click)="routerChange()">{{text | translate}}</button> -->

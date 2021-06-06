@@ -1,0 +1,13 @@
+// @import '../base/base.scss';
+@mixin scrollbarstyle {
+  .scrollbarstyle::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  .scrollbarstyle::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    // background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(120, 181, 206)), color-stop(0.86, rgb(135,193,231)));
+  }
+}

@@ -1,0 +1,12 @@
+<div class="deleteBox" *ngIf="lightBox=='freeze'">
+  <h6>{{ 'freeze' | translate }}{{ pageName | translate }}</h6>
+  <div class="content">
+    <p *ngIf="freezes.enabled">{{ 'freezeThe' | translate }}{{ pageName | translate }} <span>{{ freezes.name }}</span> ?</p>
+    <p *ngIf="!freezes.enabled">{{ 'unfreezeThe' | translate }}{{ pageName | translate }} <span>{{ freezes.name }}</span> ?</p>
+    <div class="buttonArea">
+      <app-index-button *ngIf="freezes.enabled" [text]="'doFreeze'" [type]="'remove'" (doActionEvent)="freeze()"></app-index-button>
+      <app-index-button *ngIf="!freezes.enabled" [text]="'doUnfreeze'" [type]="'remove'" (doActionEvent)="freeze()"></app-index-button>
+      <app-index-button [text]="'cancel'" [type]="'cancel'" (lightBoxCloseEvent)="lightBoxClose()"></app-index-button>
+    </div>
+  </div>
+</div>

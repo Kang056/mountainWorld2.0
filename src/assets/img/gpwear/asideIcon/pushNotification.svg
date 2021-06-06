@@ -1,0 +1,16 @@
+<svg id="Component_67_1" data-name="Component 67 – 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_377" data-name="Rectangle 377" width="24" height="24" transform="translate(18 876)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_11" data-name="Mask Group 11" transform="translate(-18 -876)" clip-path="url(#clip-path)">
+    <g id="Page-1" transform="translate(18 877)">
+      <g id="Dribbble-Light-Preview" transform="translate(0)">
+        <g id="icons" transform="translate(0)">
+          <path id="radio_tower-_1108_" data-name="radio_tower-[#1108]" d="M16,3173.212l-.007-.009L8.8,3180.88l1.8,1.92,5.4-5.767,5.4,5.767,1.8-1.92-7.193-7.68-.007.009Zm-1.637-2.905a2.484,2.484,0,0,0,3.394,0,2.566,2.566,0,0,0-.116-3.516l0,0a2.484,2.484,0,0,0-3.394,0,2.567,2.567,0,0,0,.116,3.516Zm-3.4,3.4,1.7-1.7a5.331,5.331,0,0,1-.119-6.912l-1.7-1.7c-2.546,2.545-2.428,7.76.12,10.305Zm-1.818-12-1.7-1.7a12.173,12.173,0,0,0,.12,17.1l1.7-1.7c-3.394-3.4-3.512-10.307-.119-13.7Zm10.308,10.306,1.7,1.7c2.546-2.545,2.428-7.76-.119-10.305l-1.7,1.7a5.332,5.332,0,0,1,.12,6.912Zm5.09,5.092-1.7-1.7c3.394-3.395,3.276-10.307-.119-13.7l1.7-1.7a12.176,12.176,0,0,1,.12,17.1Z" transform="translate(-4 -3160)" fill="#c4dcf1" fill-rule="evenodd"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

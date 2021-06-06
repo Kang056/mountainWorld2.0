@@ -1,0 +1,58 @@
+@import '../../../../scss/base/base.scss';
+.fa-bars {
+  cursor: pointer;
+}
+
+
+
+.header{
+  background: $mainBackground;
+  .navbar-nav{
+    .nav-item {
+      i{
+        color: $white;
+      }
+      .nav-link {
+        cursor: pointer;
+      }
+    }
+    .nav-item{
+      .nav-link{
+        color: #B8D3E9;
+        img, i{
+          margin-right: 10px;
+          width: 20px;
+          vertical-align: middle;
+        }
+        p{
+          vertical-align: middle;
+        }
+        .icon{
+          display: unset;
+        }
+        .click{
+          display: none;
+        }
+      }
+      .active{
+        color: $white;
+        .icon{
+          display: none;
+        }
+        .click{
+          display: unset;
+        }
+        background-color: $mainColor;
+      }
+      .badge-danger{
+        animation: blink 1s infinite linear;
+      }
+      cursor: pointer;
+      ul{
+        a{
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}

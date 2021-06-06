@@ -1,0 +1,75 @@
+<app-account-loading *ngIf="isLoadind"></app-account-loading>
+<div class="login-box">
+  <div class="section " id="section0">
+    <div id="container" class="wrapper">
+      <ul id="scene" class="scene unselectable"
+        data-friction-x="0.1"
+        data-friction-y="0.1"
+        data-scalar-x="25"
+        data-scalar-y="15">
+        <li class="layer" data-depth="0.05"><div class="bannerTitle"></div></li>
+        <li class="layer" data-depth="0.05"><div class="lightLeft"></div></li>
+        <li class="layer" data-depth="0.10"><h1 id="bannerText" class="bannerText">
+          <p>芯華：</p>
+          <p>這是我第4次參與妳的生日(往後的生日我也打算都全包囉～)</p>
+          <p>無奈疫情當前,只好先止住想跟妳一起慶祝的芯情</p>
+          <p>不過，還是不免俗的挑了一款耳額溫計當這次的生日禮物</p>
+          <p>記得時常檢測體溫唷，備在家裡，希望能派上用場</p>
+          <br>
+          <p>祝妳生日快樂~ 愛妳唷~</p>
+        </h1></li>
+        <li class="layer" data-depth="0.35"><div class="howard depth-60"></div></li>
+        <li class="layer" data-depth="0.35"><div class="monica depth-60"></div></li>
+        <li class="layer" data-depth="0.15"><div class="happyBirthday depth-60"></div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="login-logo">
+    <div class="logo"><img src="assets/img/gpwear/gpwearLogo.png" alt=""></div>
+    <div class="title"><img src="assets/img/gpwear/gpwearName.png" alt=""></div>
+  </div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      <form #loginForm="ngForm">
+        <div class="input-group mb-3">
+          <input name="username" [ngModel]="rememberMe?.username" type="email" class="form-control" placeholder="{{ 'account' | translate }}"/>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input name="password" [ngModel]="rememberMe?.password" type="password" class="form-control" placeholder="{{ 'passWord' | translate }}"/>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="icheck-primary">
+              <input name="remember" [ngModel]="rememberMe?.username" type="checkbox" id="remember"/>
+              <label for="remember">{{ 'rememberMe' | translate }}</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="language">
+              <form #selectForm="ngForm">
+                <select name="language" [ngModel]="lang" (ngModelChange)="selectClick(selectForm)">
+                  <option value="zh">中文</option>
+                  <option value="en">English</option>
+                </select>
+              </form>
+            </div>
+          </div>
+          <div class="col-8 loginBtn">
+            <app-button [block]="true" [text]="'login'" [loading]="isAuthLoading" (click)="login(loginForm)"></app-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

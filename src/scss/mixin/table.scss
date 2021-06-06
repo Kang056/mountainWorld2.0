@@ -1,0 +1,81 @@
+// @import '../base/base.scss';
+@mixin table {
+  width: 100%;
+  position: relative;
+  thead {
+    tr {
+      padding: 5px;
+      th {
+        text-align: center;
+        padding: 10px 5px;
+        background: $tableTitleColor;
+        color: $white;
+
+        position: sticky;
+        top: 0;
+        line-height: 1.5rem;
+        font-size: 0.8rem;
+        min-width: 120px;
+        z-index: 1;
+        border-top: unset;
+        .none {
+          display: none;
+        }
+      }
+    }
+  }
+  tr {
+    padding: 5px;
+    td {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.8rem;
+      line-height: 1.5rem;
+      color: $fontColor;
+      border-top: unset;
+      vertical-align: middle;
+      border-bottom: 1px solid rgba($disabled, 0.2);
+      button {
+        display: inline;
+        color: $white;
+        border: none;
+        outline: none;
+        width: 80px;
+        border-radius: 3px;
+        background: $button1;
+        font-weight: 900;
+        margin-right: 20px;
+        &:last-of-type {
+          background: $button2;
+          margin-right: 0px;
+        }
+        &:hover {
+          transform: translateY(2px);
+        }
+      }
+      img {
+        width: 100%;
+        max-width: 100px;
+        max-height: 80px;
+      }
+    }
+    .none {
+      display: none;
+    }
+    // &:nth-of-type(odd){
+    //   background: $secondaryColor;
+    // }
+    &:last-of-type {
+      border-bottom: 1px solid rgba($disabled, 0.2);
+    }
+    &:nth-child(odd){
+      background: $tableOddBackground;
+    }
+    &:hover{
+      background: $tableHover;
+    }
+    &:hover td{
+      color: $white;
+    }
+  }
+}

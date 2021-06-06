@@ -1,0 +1,74 @@
+@import 'breakpoint.scss';
+@import 'size.scss';
+@import '../mixin/responsive.scss';
+
+h1 {
+  font-size: $xl7;
+}
+h2 {
+  font-size: $xl6;
+}
+h3 {
+  font-size: $xl5;
+}
+h4 {
+  font-size: $xl4;
+}
+h5 {
+  font-size: $xl3;
+}
+h6 {
+  font-size: $xl;
+}
+span, p, li, th, td, input, select, button{
+  font-size: $sm;
+}
+@include respond('laptop'){
+  h1 {
+    font-size: $xl6;
+  }
+  h2 {
+    font-size: $xl5;
+  }
+  h3 {
+    font-size: $xl4;
+  }
+  h4 {
+    font-size: $xl3;
+  }
+  h5 {
+    font-size: $xl2;
+  }
+  h5 {
+    font-size: $xl;
+  }
+  h6 {
+    font-size: $lg;
+  }
+  span, p, li, th, td, input, select, button{
+    font-size: $sm;
+  }
+}
+@include respond('mobile'){
+  h1 {
+    font-size: $xl4;
+  }
+  h2 {
+    font-size: $xl3;
+  }
+  h3 {
+    font-size: $xl2;
+  }
+  h4 {
+    font-size: $xl;
+  }
+  h5 {
+    font-size: $lg;
+  }
+  h6 {
+    font-size: $base;
+  }
+  span, p, li, th, td, input, select, button{
+    font-size: $xs;
+  }
+}

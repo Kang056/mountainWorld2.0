@@ -1,0 +1,128 @@
+%batchFormBox {
+  max-width: initial;
+  max-height: 100vh;
+  width: min(100%, 660px);
+  overflow: auto;
+  flex-wrap: wrap;
+  .input-group {
+    .input-group-text {
+      background-color: transparent;
+      border: none;
+      color: white;
+      margin-right: 15px;
+    }
+    .custom-select {
+      border-radius: $inputBdrs;
+      background: #fff
+        url(../../assets/img/gpwear/pageIcon/toBtmArrowBK.svg) no-repeat
+        right 1rem center/12px 12px;
+    }
+  }
+  form {
+    width: 100%;
+    background: white;
+    padding: 0;
+    max-height: initial;
+    h3 {
+      border: none;
+      outline: none;
+    }
+    select:disabled {
+      opacity: 1;
+    }
+    #operatingBar {
+      padding: 1.5rem;
+      background: $mainBackground;
+    }
+    #operatingBarToggleBtn {
+      transform: translateY(-5px);
+      background: $toggleBtn;
+      border: none;
+    }
+    .selectWrap{
+      padding: 0 1.5rem;
+      i {color: $mainColor;}
+    }
+  }
+  .deviceNGeofenceSelBar {
+    flex-wrap: wrap;
+    .subtitle {
+      font-size: 10px;
+      color: gray;
+      font-weight: normal;
+    }
+
+    .row {
+      width: 45%;
+      height: 100%;
+      overflow: auto;
+      flex-wrap: nowrap;
+      > .label {
+        border-bottom: 1px solid $button1;
+        display: flex;
+        align-items: center;
+        .img {
+          width: 25%;
+          padding: 12px;
+          img,i {
+            color: $mainColor;
+            font-size: 50px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .content {
+          width: 75%;
+          .title {
+            color: $toggleBtn;
+            font-weight: 700;
+          }
+        }
+      }
+      .ctrl-btns {
+        padding-top: 12px;
+        padding-left: 25px;
+      }
+      .bindGroup {
+        overflow: auto;
+        // height: 500px;//測試用
+        max-height: 36vh;
+        transition: 0.3s;
+        &.barclose {
+          max-height: 50vh;
+        }
+        &::-webkit-scrollbar {
+          width: 6px !important;
+        }
+        &::-webkit-scrollbar-track {
+          // background: rgba(0,0,0,.1);
+        }
+        &::-webkit-scrollbar-thumb {
+          background: gray;
+          border-radius: 10px;
+        }
+        & > label {
+          padding-top: 15px;
+        }
+        & > label + label {
+          border-top: 1px solid lightgray;
+        }
+        .cbx {
+          @extend %cbx;
+        }
+      }
+    }
+  }
+  button {
+    color: white;
+    margin: 10px;
+    width: 120px;
+    &.cancel {
+      background: $button2;
+    }
+    &.confirem {
+      background: $green;
+    }
+  }
+}

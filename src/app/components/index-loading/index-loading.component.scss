@@ -1,0 +1,100 @@
+@import '../../../scss/base/base.scss';
+.overlay{
+  pointer-events: none;
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  // background: url(../../../assets/img/eleplo/eleploBackground.jpg);
+  .loaderText{
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #10548a;
+    animation: logo 2s infinite 1s;
+    font-size: 2rem;
+
+    letter-spacing: 20px;
+    font-size: 2em;
+    cursor: default;
+    background: linear-gradient(90deg, rgb(124, 156, 245) 0%, #10548a 35%, rgba(247,247,247,1) 35%, rgba(247,247,247,1) 40%, #10548a 40%, #10548a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradiantShift 3s infinite cubic-bezier(0,.33,1,.69);
+    background-size: 400% 400%;
+  }
+  .loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 350px;
+    height: 350px;
+    box-sizing: border-box;
+    text-align: center;
+    img{
+      width: 200px;
+      position: fixed;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      animation: logo 2s infinite 1s;
+    }
+  }
+  .loader:before,
+  .loader:after {
+      opacity: 0;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 5px solid rgba(150, 209, 236, .5);
+      box-shadow: 0 0 50px rgba(68, 164, 209, 0.5), inset 0 0 50px rgba(150, 209, 236, .5);
+  }
+  .loader:after {
+      z-index: 1;
+      animation: loading 2s infinite .3s;
+  }
+  .loader:before {
+      z-index: 2;
+      animation: loading 2s infinite;
+  }
+  @keyframes loading {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+  }
+  @keyframes logo {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+  }
+
+  @keyframes gradiantShift {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+}

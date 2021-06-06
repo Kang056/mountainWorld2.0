@@ -1,0 +1,159 @@
+<aside class="main-sidebar sidebar-dark-primary">
+  <a class="brand-link">
+    <img src="assets/img/gpwear/gpwearTitle.png" alt="Logo" class="font-weight-light"/>
+  </a>
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['dashboard']" routerLinkActive="active" title="{{ 'dashboard' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/dashboard.svg"/>
+            <img class="click" src="assets/img/gpwear/asideIcon/dashboardOn.svg"/>
+            <p>{{ 'dashboard' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview" *ngIf="permissions?.aside?.position">
+          <a class="nav-link" title="{{ 'position' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/position.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/positionOn.svg" alt=""/>
+            <p>
+              {{ 'position' | translate }}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *ngIf="permissions?.aside?.position">
+              <a class="nav-link" [routerLink]="['position']" routerLinkActive="active" title="{{ 'position' | translate }}">
+                <img class="icon" src="assets/img/gpwear/asideIcon/position.svg" alt=""/>
+                <img class="click" src="assets/img/gpwear/asideIcon/positionOn.svg" alt=""/>
+                <p>{{ 'positionOpenStreeMap' | translate }}</p>
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="permissions?.aside?.position">
+              <a class="nav-link" [routerLink]="['positionMap8']" routerLinkActive="active" title="{{ 'positionMap8' | translate }}">
+                <img class="icon" src="assets/img/gpwear/asideIcon/position.svg" alt=""/>
+                <img class="click" src="assets/img/gpwear/asideIcon/positionOn.svg" alt=""/>
+                <p>{{ 'positionMap8' | translate }}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="permissions?.aside?.device">
+          <a class="nav-link" [routerLink]="['device']" routerLinkActive="active" title="{{ 'device' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/device.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/deviceOn.svg" alt=""/>
+            <p>{{ 'device' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permissions?.aside?.device">
+          <a class="nav-link" [routerLink]="['deviceBindHealth']" routerLinkActive="active" title="{{ 'deviceBindHealth' | translate }}">
+            <i class="far fa-handshake icon"></i>
+            <i class="far fa-handshake click"></i>
+            <p>{{ 'deviceBindHealth' | translate }}</p>
+          </a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="permissions?.aside?.device">
+          <a class="nav-link" [routerLink]="['healthAlertLevel']" routerLinkActive="active" title="{{ 'healthAlertLevel' | translate }}">
+            <i class="far fa-clipboard icon"></i>
+            <i class="far fa-clipboard click"></i>
+            <p>{{ 'healthAlertLevel' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permissions?.aside?.geofence">
+          <a class="nav-link" [routerLink]="['geofence']" routerLinkActive="active" title="{{ 'geofence' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/geofence.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/geofenceOn.svg" alt=""/>
+            <p>{{ 'geofence' | translate }}</p>
+          </a>
+        </li> -->
+        <!-- <li class="nav-item" *ngIf="permissions?.aside?.information">
+          <a class="nav-link" [routerLink]="['information']" routerLinkActive="active" title="{{ 'information' | translate }}">
+            <i class="fas fa-bell"></i>
+            <p>{{ 'information' | translate }}</p>
+          </a>
+        </li> -->
+        <li class="nav-item" *ngIf="permissions?.aside?.deviceModel">
+          <a class="nav-link" [routerLink]="['deviceModel']" routerLinkActive="active" title="{{ 'deviceModel' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/model.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/modelOn.svg" alt=""/>
+            <p>{{ 'deviceModel' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permissions?.aside?.project">
+          <a class="nav-link" [routerLink]="['project']" routerLinkActive="active" title="{{ 'project' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/project.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/projectOn.svg" alt=""/>
+            <p>{{ 'project' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permissions?.aside?.person">
+          <a class="nav-link" [routerLink]="['system/person']" routerLinkActive="active" title="{{ 'person' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/person.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/personOn.svg" alt=""/>
+            <p>{{ 'person' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview" *ngIf="permissions?.aside?.organization">
+          <a class="nav-link" title="{{ 'organization' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/organization.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/organizationOn.svg" alt=""/>
+            <p>
+              {{ 'organization' | translate }}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *ngIf="permissions?.aside?.company">
+              <a class="nav-link" [routerLink]="['system/company']" routerLinkActive="active" title="{{ 'company' | translate }}">
+                <img class="icon" src="assets/img/gpwear/asideIcon/company.svg" alt=""/>
+                <img class="click" src="assets/img/gpwear/asideIcon/companyOn.svg" alt=""/>
+                <p>{{ 'company' | translate }}</p>
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="permissions?.aside?.role">
+              <a class="nav-link" [routerLink]="['system/role']" routerLinkActive="active" title="{{ 'role' | translate }}">
+                <img class="icon" src="assets/img/gpwear/asideIcon/role.svg" alt=""/>
+                <img class="click" src="assets/img/gpwear/asideIcon/roleOn.svg" alt=""/>
+                <p>{{ 'role' | translate }}</p>
+              </a>
+            </li>
+            <!-- <li class="nav-item" *ngIf="permissions?.aside?.permission">
+                <a class="nav-link" [routerLink]="['system/permission']" routerLinkActive="active" title="{{'permission' | translate}}">
+                  <img class="icon" src="assets/img/gpwear/asideIcon/permission.svg" alt="">
+                  <img class="click" src="assets/img/gpwear/asideIcon/permissionOn.svg" alt="">
+                  <p>{{'permission' | translate}}</p>
+                </a>
+              </li> -->
+          </ul>
+        </li>
+        <li class="nav-item has-treeview" *ngIf="permissions?.aside?.setup">
+          <a class="nav-link" title="{{ 'setup' | translate }}">
+            <img class="icon" src="assets/img/gpwear/asideIcon/setup.svg" alt=""/>
+            <img class="click" src="assets/img/gpwear/asideIcon/setupOn.svg" alt=""/>
+            <p>
+              {{ 'setup' | translate }}
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item" *ngIf="permissions?.aside?.pushNotification">
+              <a class="nav-link" [routerLink]="['setup/pushNotification']" routerLinkActive="active" title="{{ 'pushNotification' | translate }}">
+                <img class="icon" src="assets/img/gpwear/asideIcon/pushNotification.svg" alt=""/>
+                <img class="click" src="assets/img/gpwear/asideIcon/pushNotificationOn.svg" alt=""/>
+                <p>{{ 'pushNotification' | translate }}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <br/>
+        <li class="nav-header">{{ 'language' | translate }}</li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="changeLang()" title="{{ 'languageChange' | translate }}">
+            <img src="assets/img/gpwear/asideIcon/languageChange.svg" alt=""/>
+            <p>{{ 'languageChange' | translate }}</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

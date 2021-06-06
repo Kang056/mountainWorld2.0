@@ -1,0 +1,14 @@
+@import '../../../scss/base/base.scss';
+.title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: 100;
+  border-radius: 2px;
+  h2{
+    font-weight: 100;
+    font-size: 22px;
+    letter-spacing:-1px;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="deleteBox" *ngIf="lightBox==='remove'">
+  <h6>{{ 'remove' | translate }}{{ pageName | translate }}</h6>
+  <div class="content">
+    <p>{{ 'removeThe' | translate }}{{ pageName | translate }}
+      <span>{{ removes.name }}</span> ?
+    </p>
+    <div class="buttonArea">
+      <app-index-button [text]="'doRemove'" [type]="'remove'" (doActionEvent)="remove()"></app-index-button>
+      <app-index-button [text]="'cancel'" [type]="'cancel'" (lightBoxCloseEvent)="lightBoxClose()"></app-index-button>
+    </div>
+  </div>
+</div>

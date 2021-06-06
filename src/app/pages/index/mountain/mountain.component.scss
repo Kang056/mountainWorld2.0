@@ -1,0 +1,27 @@
+@import '../../../../scss/main.scss';
+
+.page{
+  padding: 10px;
+  .contentBox{
+    @include contentBox;
+  }
+  .formBox{
+    @include actionBox;
+    .cbx {@extend %cbx;
+      // margin-left: 10px;
+    }
+    form{
+      @include checkbox;
+
+    }
+  }
+}
+
+
+@media (max-width:767px) {
+  .company{
+    .contentBox{
+      // height: calc(100vh - 184px);
+    }
+  }
+}

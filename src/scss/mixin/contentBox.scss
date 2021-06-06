@@ -1,0 +1,66 @@
+@import '../base/base.scss';
+@import '../mixin/table.scss';
+@import '../mixin/scrollbarstyle.scss';
+@mixin contentBox {
+  background-image: $tableBackgroundColor;
+  border-radius: 5px;
+  box-shadow: 0 0 10px $disabled;
+  .operatingBar {
+    color: $white;
+    background: $mainBackground;
+    padding: 5px;
+    position: relative;
+    left: 0;
+    border-radius: 5px 5px 0 0;
+  }
+  .tableBox {
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - 190px);
+    @include table;
+  }
+  .checkBox {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .tableBox {
+      display: none;
+    }
+    .checkBox {
+      background-image: $tableBackgroundColor;
+      border-radius: 5px;
+      box-shadow: 0 0 10px $disabled;
+      display: block;
+      .check {
+        width: 100%;
+        overflow: auto;
+        height: calc(100vh - 265px);
+        .wrap {
+          width: calc(100% - 10px);
+          border-radius: 5px;
+          border: 1px solid $mainColor;
+          margin: 5px;
+          padding: 5px;
+          display: inline-block;
+          p {
+            margin: 0 5px;
+          }
+          img {
+            max-width: 200px;
+            max-height: 100px;
+          }
+          hr {
+            margin: 5px;
+          }
+        }
+        .noData {
+          p {
+            text-align: center;
+            line-height: 3rem;
+          }
+        }
+      }
+    }
+  }
+  @include scrollbarstyle;
+}

@@ -1,0 +1,58 @@
+// @import '../base/base.scss';
+@mixin fileWrap {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  background-color: $mainColor;
+  color:$white;
+  text-align:center;
+  border-radius:5px;
+  padding:10px 10px;
+  margin: 10px auto;
+  // max-width: 342px;
+  width: 100%;
+  .fileBox{
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    top: 0;
+    right: 0;
+    height:100%;
+    cursor: pointer;
+  }
+  &:hover{
+    box-shadow:  0 0px 2px $black;
+    transform: translateY(2px);
+  }
+  &:disabled{
+    background: $disabled;
+    box-shadow:  none ;
+    transform: translateY(0px);
+  }
+}
+@mixin getFiles {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  color:$white;
+  text-align:center;
+  border-radius:5px;
+  padding:10px 10px;
+  margin: 10px auto;
+  background-color: $disabled;
+  width: 100%;
+  // max-width: 342px;
+  .fileBox{
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    top: 0;
+    right: 0;
+    height:100%;
+    cursor: pointer;
+  }
+  &:hover{
+    box-shadow:  0 0px 2px $black;
+    transform: translateY(2px);
+  }
+}

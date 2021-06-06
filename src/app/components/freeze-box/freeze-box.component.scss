@@ -1,0 +1,5 @@
+@import '../../../scss/base/base.scss';
+@import '../../../scss/mixin/removeBox.scss';
+.deleteBox{
+  @include removeBox;
+}

@@ -1,0 +1,23 @@
+<div [ngStyle]="{'min-width': 90+'px'}">
+  <p *ngIf="sortType!=name" (click)="sortBtnClick(name, sequence)">
+    {{ name | translate }}
+    <span>
+      <i class="fa fa-fw fa-caret-up unSelect"></i>
+      <i class="fa fa-fw fa-caret-down unSelect"></i>
+    </span>
+  </p>
+  <p *ngIf="sequence&&sortType==name" (click)="sortBtnClick(name, false)">
+    {{ name | translate }}
+    <span>
+      <i class="fa fa-fw fa-caret-up select"></i>
+      <i class="fa fa-fw fa-caret-down unSelect"></i>
+    </span>
+  </p>
+  <p *ngIf="!sequence&&sortType==name" (click)="sortBtnClick(name, true)">
+    {{ name | translate }}
+    <span>
+      <i class="fa fa-fw fa-caret-up unSelect"></i>
+      <i class="fa fa-fw fa-caret-down select"></i>
+    </span>
+  </p>
+</div>

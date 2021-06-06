@@ -1,0 +1,30 @@
+// @import '../base/base.scss';
+// @mixin progress {
+//   .red {
+//     background: #dd4b39;
+//   }
+//   .green {
+//     background: $green;
+//   }
+// }
+
+@mixin progress {
+  margin-bottom: 5px;
+  max-width: 100px;
+  border: 1px solid $white;
+  position: relative;
+  height: 15px;
+  i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $white;
+  }
+  .red{
+    background: #DD4B39;
+  }
+  .green{
+    background: #00A65A;
+  }
+}

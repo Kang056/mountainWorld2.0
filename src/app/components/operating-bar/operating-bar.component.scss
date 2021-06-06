@@ -1,0 +1,30 @@
+@import '../../../scss/base/base.scss';
+
+form {
+  // margin: 5px;
+  display: inline-block;
+  div {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      width: 36px;
+      display: inline-block;
+      margin: 0 5px 0 10px;
+      img {
+        width: 80%;
+      }
+    }
+    select,
+    input {
+      max-width: 280px;
+      width: 200px;
+      height: 30px;
+      color: $matchColor;
+      border: 0px;
+      margin: 5px;
+      padding: 5px;
+      border-radius: 2px;
+    }
+  }
+}

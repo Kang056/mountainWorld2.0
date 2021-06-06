@@ -1,0 +1,58 @@
+@import '../../../scss/base/base.scss';
+
+.btn {
+  width: 95px;
+  // font-size: 1rem;
+  display: inline;
+  margin: 2px 5px;
+  color: $white;
+  height: 30px;
+  // line-height: 1rem;
+  // font-size: unset;
+  padding: 0;
+  vertical-align: revert;
+  // &:active{
+  //   background: #FFFFFF;
+  //   color:#000;
+  // }
+  &:hover {
+    color: $white;
+    box-shadow: 0 0px 2px $black;
+    transform: translateY(2px);
+  }
+  &:disabled {
+    background: $disabled;
+    box-shadow: none;
+    transform: none;
+  }
+}
+.btn-add,
+.btn-edit,
+.btn-health,
+.btn-map,
+.btn-layout,
+.btn-doAdd,
+.btn-doRemove,
+.btn-doEdit,
+.btn-doFreeze,
+.btn-doUnfreeze,
+.btn-batch,
+.btn-next,
+.btn-addTempImei,
+.btn-back,
+.btn-focus,
+.btn-track,
+.btn-geofence,
+.btn-record,
+.btn-dital,
+.btn-detail,
+.btn-bind {
+  background: $button1;
+}
+.btn-remove,
+.btn-freeze,
+.btn-unfreeze,
+.btn-cancel,
+.btn-close {
+  background: $button2;
+}

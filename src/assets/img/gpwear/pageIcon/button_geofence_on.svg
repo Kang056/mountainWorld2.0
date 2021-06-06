@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1865" data-name="Rectangle 1865" width="24" height="24" transform="translate(256 460)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="button_geofence_on" transform="translate(-256 -460)" clip-path="url(#clip-path)">
+    <g id="icon_geofence" transform="translate(250.516 454.557)">
+      <path id="Path_3611" data-name="Path 3611" d="M7.589,5.656a.349.349,0,0,0-.64,0L5.5,8.563a.291.291,0,0,0,0,.16V29.077a.363.363,0,0,0,.363.363H8.723a.363.363,0,0,0,.363-.363V8.723a.291.291,0,0,0,0-.16Z" fill="#fff"/>
+      <path id="Path_3612" data-name="Path 3612" d="M17.766,5.656a.349.349,0,0,0-.64,0L15.673,8.563a.291.291,0,0,0,0,.16V29.077a.363.363,0,0,0,.363.363h2.908a.363.363,0,0,0,.363-.363V8.723a.291.291,0,0,0,0-.16Z" fill="#fff"/>
+      <path id="Path_3613" data-name="Path 3613" d="M29.4,8.563,27.943,5.656a.349.349,0,0,0-.64,0L25.85,8.563a.291.291,0,0,0,0,.16V29.077a.363.363,0,0,0,.363.363h2.908a.363.363,0,0,0,.363-.363V8.723a.291.291,0,0,0-.087-.16Z" fill="#fff"/>
+      <rect id="Rectangle_1859" data-name="Rectangle 1859" width="5.089" height="2.661" rx="0.363" transform="translate(9.814 18.057)" fill="#fff"/>
+      <rect id="Rectangle_1860" data-name="Rectangle 1860" width="5.089" height="2.661" rx="0.363" transform="translate(19.991 18.057)" fill="#fff"/>
+      <rect id="Rectangle_1861" data-name="Rectangle 1861" width="5.089" height="2.661" rx="0.363" transform="translate(9.814 13.201)" fill="#fff"/>
+      <rect id="Rectangle_1862" data-name="Rectangle 1862" width="5.089" height="2.661" rx="0.363" transform="translate(19.991 13.201)" fill="#fff"/>
+      <rect id="Rectangle_1863" data-name="Rectangle 1863" width="5.089" height="2.661" rx="0.363" transform="translate(9.814 22.898)" fill="#fff"/>
+      <rect id="Rectangle_1864" data-name="Rectangle 1864" width="5.089" height="2.661" rx="0.363" transform="translate(19.991 22.898)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

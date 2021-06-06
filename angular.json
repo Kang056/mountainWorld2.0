@@ -1,0 +1,154 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "gpwear": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/gpwear",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss", "src/main.scss"],
+            "scripts": [
+              "src/app/js/jquery.min.js",
+              "src/app/js/bootstrap.bundle.min.js",
+              "src/app/js/adminlte.min.js",
+
+              "src/app/js/LeafletMap/libs/leaflet-src.js",
+              "src/app/js/LeafletMap/src/Leaflet.draw.js",
+              "src/app/js/LeafletMap/src/Leaflet.Draw.Event.js",
+              "src/app/js/LeafletMap/src/Toolbar.js",
+              "src/app/js/LeafletMap/src/Tooltip.js",
+              "src/app/js/LeafletMap/src/ext/GeometryUtil.js",
+              "src/app/js/LeafletMap/src/ext/LineUtil.Intersect.js",
+              "src/app/js/LeafletMap/src/ext/Polygon.Intersect.js",
+              "src/app/js/LeafletMap/src/ext/Polyline.Intersect.js",
+              "src/app/js/LeafletMap/src/ext/TouchEvents.js",
+              "src/app/js/LeafletMap/src/draw/DrawToolbar.js",
+              "src/app/js/LeafletMap/src/draw/handler/Draw.Feature.js",
+              "src/app/js/LeafletMap/src/draw/handler/Draw.SimpleShape.js",
+              "src/app/js/LeafletMap/src/draw/handler/Draw.Polyline.js",
+              "src/app/js/LeafletMap/src/draw/handler/Draw.Circle.js",
+              "src/app/js/LeafletMap/src/draw/handler/Draw.Polygon.js",
+              "src/app/js/LeafletMap/src/Control.Draw.js",
+              "src/app/js/LeafletMap/src/edit/handler/Edit.Poly.js",
+              "src/app/js/LeafletMap/src/edit/handler/Edit.SimpleShape.js",
+              "src/app/js/LeafletMap/src/edit/handler/Edit.CircleMarker.js",
+              "src/app/js/LeafletMap/src/edit/handler/Edit.Circle.js",
+              "src/app/js/position/openStreeMap/openStreeMap.js",
+              "src/app/js/position/map8/gomp.js",
+              "src/app/js/position/map8/turf.min.js",
+              "src/app/js/position/map8/map8.js",
+              "src/app/js/errorResponse.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "xlsx"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10kb",
+                  "maximumError": "15kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "gpwear:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "gpwear:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "gpwear:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "gpwear:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "gpwear:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "gpwear",
+  "cli": {
+    "analytics": "43a7ce40-5fb9-4a0d-8b40-b48fc0426e9d"
+  }
+}
