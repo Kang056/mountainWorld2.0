@@ -57,7 +57,8 @@
             ],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "xlsx"
+              "xlsx",
+              "gpxparser"
             ]
           },
           "configurations": {

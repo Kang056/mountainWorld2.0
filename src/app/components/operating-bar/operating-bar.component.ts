@@ -7,18 +7,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class OperatingBarComponent implements OnInit {
   @Input() titles = [];
-  @Input() selects: any;
+
   @Output() selectClickEvent = new EventEmitter();
   @Output() datasWorkEvent = new EventEmitter();
   keyWord = '';
 
   constructor() { }
 
-  // 下拉選單設定
-  selectClick(selectData: any): void {
-    console.log(selectData.form.value);
-    this.selectClickEvent.emit(selectData.form.value);
-  }
+
 
   // 關鍵字搜尋設定
   setSearch(keyWord): void  {
@@ -28,6 +24,7 @@ export class OperatingBarComponent implements OnInit {
 
   // 關鍵字搜尋作業
   datasSearch(datas: any) {
+    console.log(datas);
     const searchDatas = datas.filter(item => {
       let find = false;
       Object.values(item).forEach(data => {

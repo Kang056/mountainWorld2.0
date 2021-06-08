@@ -1,7 +1,7 @@
 <div class="wrapper">
   <app-header (toggleMenuSidebar)="toggleMenuSidebar()"></app-header>
-  <!-- <app-aside (mainSidebarHeight)="mainSidebarHeight($event)"></app-aside> -->
-  <div #contentWrapper >
+  <app-aside (mainSidebarHeight)="mainSidebarHeight($event)"></app-aside>
+  <div #contentWrapper class="content-wrapper">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -5,7 +5,7 @@
   <div class="contentBox">
     <div class="operatingBar">
       <!-- 互動操作區 -->
-      <app-operating-bar #operatingBar [titles]="titles" [selects]="selects" (selectClickEvent)="selectClick($event)" (datasWorkEvent)="datasWork()"></app-operating-bar>
+      <app-operating-bar #operatingBar [titles]="titles" (datasWorkEvent)="datasWork()"></app-operating-bar>
       <!-- 新增按鈕 -->
       <app-index-button *ngIf="btns?.add" [text]="'add'" [type]="'lightBox'" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
     </div>
@@ -21,10 +21,28 @@
               <app-table-sort [name]="'name'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
             </th>
             <th>
-              <app-table-sort [name]="'username'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+              <app-table-sort [name]="'id'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
             </th>
             <th>
-              <app-table-sort [name]="'role'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+              <app-table-sort [name]="'elevation'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+            </th>
+            <th>
+              <app-table-sort [name]="'grade'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+            </th>
+            <th>
+              <app-table-sort [name]="'position'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+            </th>
+            <th>
+              <app-table-sort [name]="'nationalPark'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+            </th>
+            <th>
+              <app-table-sort [name]="'latitude'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+            </th>
+            <th>
+              <app-table-sort [name]="'longitude'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+            </th>
+            <th>
+              <app-table-sort [name]="'designation'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
             </th>
             <th>{{ 'operation' | translate }}</th>
           </tr>
@@ -33,20 +51,23 @@
           <tr *ngFor="let data of datas">
             <td>{{ data?.number }}</td>
             <td>{{ data?.name }}</td>
-            <td>{{ data?.username }}</td>
+            <td>{{ data?.id }}</td>
+            <td>{{ data?.elevation }}</td>
+            <td>{{ data?.grade }}</td>
+            <td>{{ data?.position }}</td>
+            <td>{{ data?.nationalPark }}</td>
+            <td>{{ data?.latitude }}</td>
+            <td>{{ data?.longitude }}</td>
+            <td>{{ data?.designation }}</td>
             <td>
-              <p *ngFor="let role of data?.roles">{{ role?.name }}</p>
-            </td>
-            <td>
-              <app-index-button *ngIf="btns?.edit&&data?.id!=1&&data?.id!=userData?.user?.id&&data?.enabled" [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
-              <app-index-button *ngIf="btns?.freeze&&data?.id!=1&&data?.id!=userData?.user?.id" [text]="'freeze'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
-              <app-index-button *ngIf="btns?.remove&&data?.id!=1&&data?.id!=userData?.user?.id" [text]="'remove'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+              <app-index-button  [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+              <app-index-button  [text]="'remove'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
             </td>
           </tr>
         </tbody>
         <tbody *ngIf="datas?.length==0">
           <tr>
-            <td [attr.colspan]="7">{{ 'noData' | translate }}</td>
+            <td [attr.colspan]="12">{{ 'noData' | translate }}</td>
           </tr>
         </tbody>
       </table>
@@ -56,16 +77,18 @@
         <div class="wrap" *ngFor="let data of datas">
           <p>{{ 'number' | translate }} : {{ data?.number }}</p>
           <p>{{ 'name' | translate }} : {{ data?.name }}</p>
-          <p>{{ 'username' | translate }} : {{ data?.username }}</p>
-          <p>
-            {{ 'role' | translate }} :
-            <span *ngFor="let role of data?.roles">{{ role?.name }}</span>
-          </p>
+          <p>{{ 'id' | translate }} : {{ data?.id }}</p>
+          <p>{{ 'elevation' | translate }} : {{ data?.elevation }}</p>
+          <p>{{ 'grade' | translate }} : {{ data?.grade }}</p>
+          <p>{{ 'position' | translate }} : {{ data?.position }}</p>
+          <p>{{ 'nationalPark' | translate }} : {{ data?.nationalPark }}</p>
+          <p>{{ 'latitude' | translate }} : {{ data?.latitude }}</p>
+          <p>{{ 'longitude' | translate }} : {{ data?.longitude }}</p>
+          <p>{{ 'designation' | translate }} : {{ data?.designation }}</p>
           <hr/>
           <div>
-            <app-index-button *ngIf="btns?.edit&&data?.enabled" [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
-            <app-index-button *ngIf="btns?.freeze&&data?.id!=1&&data?.id!=userData?.user?.id" [text]="'freeze'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
-            <app-index-button *ngIf="btns?.remove&&data?.id!=1&&data?.id!=userData?.user?.id" [text]="'remove'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+            <app-index-button [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+            <app-index-button [text]="'remove'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
           </div>
         </div>
         <div class="noData" *ngIf="datas?.length==0">
@@ -87,26 +110,8 @@
           <span>{{ errorName }}</span>
         </label>
       </div>
-      <div class="inputArea">
-        <input type="email" name="username" (click)="errorReset()" placeholder="{{ 'input' | translate }}{{ 'email' | translate }}" ngModel required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-        <label>
-          <span> * </span>
-          {{ 'email' | translate }}
-          <span>{{ errorUsername }}</span>
-        </label>
-      </div>
-      <div class="inputArea" *ngIf="permissions?.person?.addBox?.companySelect">
-        <select name="companyId" ngModel required (click)="errorReset()">
-          <option [value]="data.id" *ngFor="let data of companyDatas">{{ data.enName }} | {{ data.zhName }}</option>
-        </select>
-        <label>
-          <span> * </span>
-          {{ 'company' | translate }}
-          <span>{{ errorCompany }}</span>
-        </label>
-      </div>
       <div class="buttonArea">
-        <app-index-button [text]="'doAdd'" [type]="'action'" (doActionEvent)="addPerson(addForm)" [form]="addForm" ></app-index-button>
+        <app-index-button [text]="'doAdd'" [type]="'action'" (doActionEvent)="addMountain(addForm)" [form]="addForm" ></app-index-button>
         <app-index-button [text]="'cancel'" [type]="'cancel'" (lightBoxCloseEvent)="lightBoxClose()"></app-index-button>
       </div>
     </form>
@@ -124,24 +129,12 @@
           <span>{{ errorName }}</span>
         </label>
       </div>
-      <div class="inputArea">
-        <label class="checkbox" *ngFor="let item of selectRoles;let no=index">
-          <input type="checkbox" name="role{{ item.id }}" [ngModel]="item.checkBoxType" class="cbx"/>
-          <span>{{ item.name }}</span>
-        </label>
-        <label class="always">
-          {{ 'role' | translate }}
-          <span>{{ errorRole }}</span>
-        </label>
-      </div>
       <div class="buttonArea">
-        <app-index-button [text]="'doEdit'" [type]="'action'" (doActionEvent)="editPerson(editForm)" [form]="editForm"></app-index-button>
+        <app-index-button [text]="'doEdit'" [type]="'action'" (doActionEvent)="editMountain(editForm)" [form]="editForm"></app-index-button>
         <app-index-button [text]="'cancel'" [type]="'cancel'" (lightBoxCloseEvent)="lightBoxClose()"></app-index-button>
       </div>
     </form>
   </div>
-  <!-- 凍結 -->
-  <app-freeze-box [pageName]="pageName" [freezes]="freezes" [lightBox]="lightBox" (freezeClickEvent)="freezePerson()" (lightBoxCloseEvent)="lightBoxClose()"></app-freeze-box>
   <!-- 刪除 -->
-  <app-remove-box [pageName]="pageName" [removes]="removes" [lightBox]="lightBox" (removeClickEvent)="deletePerson()" (lightBoxCloseEvent)="lightBoxClose()"></app-remove-box>
+  <app-remove-box [pageName]="pageName" [removes]="removes" [lightBox]="lightBox" (removeClickEvent)="deleteMountain()" (lightBoxCloseEvent)="lightBoxClose()"></app-remove-box>
 </div>

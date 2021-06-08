@@ -1,25 +1,3 @@
-<form #selectForm="ngForm">
-  <div *ngFor="let item of selects">
-
-    <div *ngIf="item.permissions">
-      <span *ngIf="item.selectName==='company'">
-        <img src="assets/img/gpwear/pageIcon/label_company.svg"/>
-      </span>
-
-      <span *ngIf="item.selectName==='project'">
-        <img src="assets/img/gpwear/pageIcon/label_project.svg"/>
-      </span>
-
-      <span *ngIf="item.selectName==='type'">
-        <i class="fas fa-filter"></i>
-      </span>
-
-      <select [ngModel]="item.selectItem[0]?.itemValue" name="{{ item.name }}" (ngModelChange)="selectClick(selectForm)">
-        <option *ngFor="let data of item.selectItem" value="{{ data.itemValue }}">{{ data.itemName | translate }}</option>
-      </select>
-    </div>
-  </div>
-</form>
 <form #searchForm="ngForm">
   <div>
     <span *ngIf="'search'">

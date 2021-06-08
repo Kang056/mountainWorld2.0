@@ -1,9 +1,41 @@
 {
   "mountainWorld": "Mountain World",
   "login": "Login",
+  "logOut": "Logout",
+  "effectiveTime": "Effective time",
+  "changePasswords": "Change passwords",
   "map": "Map",
   "ruler": "Ruler",
   "account": "Account",
   "mountain": "Mountain",
-  "rememberMe": "Remember"
+  "rememberMe": "Remember",
+  "language": "language",
+  "languageChange": "English",
+  "add": "Add",
+  "edit": "Edit",
+  "remove": "Remove",
+  "freeze": "Freeze",
+  "cancel": "Cancel",
+
+  "doFreeze": "Freeze",
+  "doUnfreeze": "Unfreeze",
+  "doRemove": "Remove",
+  "doAdd": "Add",
+  "doEdit": "Edit",
+
+  "number": "Number",
+  "name": "Name",
+  "username": "Account",
+  "role": "Role",
+  "operation": "Operation",
+  "id": "Rank",
+  "elevation": "Elevation",
+  "grade": "Grade",
+  "position": "Location",
+  "nationalPark": "Nationalpark",
+  "latitude": "Latitude",
+  "longitude": "Longitude",
+  "designation": "Designation",
+
+  "removeThe": "Are you sure to remove the "
 }

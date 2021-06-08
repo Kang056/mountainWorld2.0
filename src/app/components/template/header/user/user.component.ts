@@ -10,16 +10,10 @@ import { PersonService } from './../../../../services/person.service';
 export class UserComponent implements OnInit {
 
   userData = JSON.parse(sessionStorage.getItem('user'));
-  // @ViewChild('dropdownMenu', { static: false }) dropdownMenu;
-  // @HostListener('document:click', ['$event'])
-  // clickout(event) {
-  //   if (!this.elementRef.nativeElement.contains(event.target)) {
-  //     this.hideDropdownMenu();
-  //   }
-  // }
-
+  deadline = this.userData.tokenExpiration;
+  timeinterval: any;
+  time: any;
   constructor(
-    // private elementRef: ElementRef,
     private personService: PersonService,
     private router: Router,
   ) {}
@@ -57,29 +51,46 @@ export class UserComponent implements OnInit {
       } else { alert('已取消'); }
     }
   }
-  ngOnInit(): void {
-    // this.user = this.appService.user;
+
+  // 時間拆解
+  getTimeRemaining(endtime) {
+    const total = Date.parse(endtime) - new Date().getTime();
+    const seconds = Math.floor((total / 1000) % 60);
+    const minutes = Math.floor((total / 1000 / 60) % 60);
+    const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+    const days = Math.floor(total / (1000 * 60 * 60 * 24));
+    return {total, days, hours, minutes, seconds };
   }
 
-  // toggleDropdownMenu() {
-  //   if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-  //     this.hideDropdownMenu();
-  //   } else {
-  //     this.showDropdownMenu();
-  //   }
-  // }
+  // 倒數計時
+  initializeClock(endtime) {
+    const endtimeClock = endtime;
+    const the = this;
+    function updateClock() {
+      const time = the.getTimeRemaining(endtimeClock);
+      the.time = {
+        total: time.total,
+        days: time.days,
+        hours: ('0' + time.hours).slice(-2),
+        minutes: ('0' + time.minutes).slice(-2),
+        seconds: ('0' + time.seconds).slice(-2),
+      };
+      if (time.total <= 0) {
+        clearInterval(this.timeinterval);
+      }
+    }
+    updateClock();
+    this.timeinterval = setInterval(updateClock, 1000);
+  }
 
-  // showDropdownMenu() {
-  //   this.renderer.addClass(this.dropdownMenu.nativeElement, 'show');
-  // }
-
-  // hideDropdownMenu() {
-  //   this.renderer.removeClass(this.dropdownMenu.nativeElement, 'show');
-  // }
-
-  logout(): void  {
+  logout(): void {
     sessionStorage.clear();
     this.router.navigate(['account']);
+    clearInterval(this.timeinterval);
   }
+  ngOnInit(): void {
+    this.initializeClock(this.deadline);
+  }
+
 
 }

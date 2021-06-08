@@ -12,17 +12,15 @@
   <ul #dropdownMenu class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
     <li class="user-header">
       <div class="userImg">
-        <img src="assets/img/eleplo/eleploLogo.png" alt="User Image"/>
+        <img src="assets/img/home/hiker.png" alt="User Image"/>
         <!-- <img [src]="userData.user.companyPo.companyImageUrl||'assets/img/eleplo/eleploTitle.png'" alt="User Image" /> -->
       </div>
-      <p>
-        {{ userData.user.name }}
-        <small>{{ userData.user.companyPo.enName+' | '+userData.user.companyPo.zhName }}</small>
-      </p>
+      <p>{{ userData.user.name }}</p>
     </li>
     <li class="user-body">
       <div class="row">
-        <small class="col-12 text-center">{{ 'effectiveTime' | translate }} : {{ userData.tokenExpiration | date:'yyyy/MM/dd HH:mm:ss' }}</small>
+        <small class="col-12 text-center">{{ 'effectiveTime' | translate }} : {{ time?.hours}}:{{ time?.minutes}}:{{ time?.seconds}}</small>
+        <!-- <small class="col-12 text-center">{{ 'effectiveTime' | translate }} : {{ userData.tokenExpiration | date:'yyyy/MM/dd HH:mm:ss' }}</small> -->
       </div>
     </li>
     <li class="user-footer">

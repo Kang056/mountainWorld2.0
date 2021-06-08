@@ -60,7 +60,7 @@
       .nav{
         .nav-item{
           .nav-link{
-            color: #B8D3E9;
+            color: $white;
             img, i{
               margin-right: 10px;
               width: 20px;
@@ -75,16 +75,19 @@
             .click{
               display: none;
             }
+            &:hover{
+              background-color: $asideHover;
+            }
           }
           .active{
-            color: $white;
+            color: $mainColorHover;
             .icon{
               display: none;
             }
             .click{
               display: unset;
             }
-            background-color: $mainColor;
+            background-color: $asideHover;
           }
           .badge-danger{
             animation: blink 1s infinite linear;

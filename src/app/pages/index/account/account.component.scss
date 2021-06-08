@@ -1,7 +1,6 @@
 @import '../../../../scss/main.scss';
 
 .page{
-  padding: 10px;
   .contentBox{
     @include contentBox;
   }

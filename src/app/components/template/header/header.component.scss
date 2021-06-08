@@ -1,3 +1,90 @@
+// @import '../../../../scss/base/base.scss';
+// .fa-bars {
+//   cursor: pointer;
+// }
+
+
+
+// .header{
+//   background: $mainBackground;
+//   .logo{
+//     img{
+//       height: 50px;
+//     }
+//   }
+//   .navbar-nav{
+//     margin-left: 20px;
+//     .nav-item {
+//       i{@import '../../../../scss/base/base.scss';
+//         .fa-bars {
+//           cursor: pointer;
+//         }
+
+
+
+//         .main-header{
+//           background: $mainBackground;
+//           .navbar-nav{
+//             .nav-item {
+//               i{
+//                 color: $white;
+//               }
+//               .nav-link {
+//                 cursor: pointer;
+//               }
+//             }
+//           }
+//         }
+
+//         color: $white;
+//       }
+//       .nav-link {
+//         cursor: pointer;
+//       }
+//     }
+//     .nav-item{
+//       .nav-link{
+//         color: $white;
+//         img, i{
+//           margin-right: 10px;
+//           width: 20px;
+//           vertical-align: middle;
+//         }
+//         span{
+//           vertical-align: middle;
+//         }
+//         .icon{
+//           display: unset;
+//         }
+//         .click{
+//           display: none;
+//         }
+//         &:hover{
+//           background-color: $asideHover;
+//         }
+//       }
+//       .active{
+//         color: $mainColorHover;
+//         .icon{
+//           display: none;
+//         }
+//         .click{
+//           display: unset;
+//         }
+//         background-color: $asideHover;
+//       }
+//       .badge-danger{
+//         animation: blink 1s infinite linear;
+//       }
+//       cursor: pointer;
+//       ul{
+//         a{
+//           margin-left: 20px;
+//         }
+//       }
+//     }
+//   }
+// }
 @import '../../../../scss/base/base.scss';
 .fa-bars {
   cursor: pointer;
@@ -5,13 +92,8 @@
 
 
 
-.header{
+.main-header{
   background: $mainBackground;
-  .logo{
-    img{
-      height: 50px;
-    }
-  }
   .navbar-nav{
     .nav-item {
       i{
@@ -19,44 +101,6 @@
       }
       .nav-link {
         cursor: pointer;
-      }
-    }
-    .nav-item{
-      .nav-link{
-        color: #B8D3E9;
-        img, i{
-          margin-right: 10px;
-          width: 20px;
-          vertical-align: middle;
-        }
-        p{
-          vertical-align: middle;
-        }
-        .icon{
-          display: unset;
-        }
-        .click{
-          display: none;
-        }
-      }
-      .active{
-        color: $white;
-        .icon{
-          display: none;
-        }
-        .click{
-          display: unset;
-        }
-        background-color: $mainColor;
-      }
-      .badge-danger{
-        animation: blink 1s infinite linear;
-      }
-      cursor: pointer;
-      ul{
-        a{
-          margin-left: 20px;
-        }
       }
     }
   }

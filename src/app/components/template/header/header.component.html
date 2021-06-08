@@ -1,40 +1,13 @@
-<nav class=" navbar navbar-expand navbar-light header">
-  <div class="logo">
-    <img src="assets/img/home/logo/logo.png" alt="">
-  </div>
-  <ul class="navbar-nav">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <ul class="navbar-nav" title="{{ 'aside' | translate }}">
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['map']" routerLinkActive="active" title="{{ 'map' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/map.svg"/>
-        <img class="click" src="assets/img/gpwear/asideIcon/mapOn.svg"/>
-        <p>{{ 'map' | translate }}</p>
-      </a>
-    </li>
-    <li class="nav-item" *ngIf="permissions?.aside?.device">
-      <a class="nav-link" [routerLink]="['ruler']" routerLinkActive="active" title="{{ 'ruler' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/ruler.svg" alt=""/>
-        <img class="click" src="assets/img/gpwear/asideIcon/rulerOn.svg" alt=""/>
-        <p>{{ 'ruler' | translate }}</p>
-      </a>
-    </li>
-    <li class="nav-item" *ngIf="permissions?.aside?.device">
-      <a class="nav-link" [routerLink]="['account']" routerLinkActive="active" title="{{ 'account' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/account.svg" alt=""/>
-        <img class="click" src="assets/img/gpwear/asideIcon/accountOn.svg" alt=""/>
-        <p>{{ 'account' | translate }}</p>
-      </a>
-    </li>
-    <li class="nav-item" *ngIf="permissions?.aside?.device">
-      <a class="nav-link" [routerLink]="['mountain']" routerLinkActive="active" title="{{ 'mountain' | translate }}">
-        <img class="icon" src="assets/img/gpwear/asideIcon/mountain.svg" alt=""/>
-        <img class="click" src="assets/img/gpwear/asideIcon/mountainOn.svg" alt=""/>
-        <p>{{ 'mountain' | translate }}</p>
+      <a class="nav-link" data-widget="pushmenu" role="button">
+        <i class="fas fa-bars"></i>
       </a>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
-    <img src="assets/img/gpwear/asideIcon/languageChange.svg" alt="" (click)="changeLang()" />
-
+    <!-- <app-message></app-message> -->
     <app-user></app-user>
   </ul>
 </nav>

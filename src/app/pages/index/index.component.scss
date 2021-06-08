@@ -4,11 +4,10 @@
   min-height: 100vh;
 }
 .wrapper{
-  // .content-wrapper {
-  //   padding: 10px;
-  //   background: $white;
-  //   height: calc(100vh - 57px);
-  //   overflow: scroll;
-  // }
+  .content-wrapper {
+    padding: 10px;
+    background: $white;
+    height: calc(100vh - 57px);
+    overflow: scroll;
+  }
 }
-
