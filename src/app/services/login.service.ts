@@ -20,7 +20,8 @@ export class LoginService {
 
   // 取token
   login(data): Observable<any> {
-    return this.httpClient.post(this.baseUrl + '/login', data);
+    // return this.httpClient.post(this.baseUrl + '/login', data);
+    return this.httpClient.post('http://127.0.0.1/sqlTest/login.php', data);
   }
 
   // 取使用者資料
@@ -29,7 +30,7 @@ export class LoginService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-    return this.httpClient.get(this.baseUrl + '/api/v2/persons/details', {
+    return this.httpClient.get('http://127.0.0.1/sqlTest/login.php', {
       headers,
     });
   }

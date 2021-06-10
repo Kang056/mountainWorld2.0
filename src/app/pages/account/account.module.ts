@@ -5,11 +5,10 @@ import { NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { LoginComponent } from './login/login.component';
-import { MaintenanceComponent } from './maintenance/maintenance.component';
+
 
 import { AccountLoadingComponent } from './../../components/account-loading/account-loading.component';
 import { AppButtonComponent } from './../../components/app-button/app-button.component';
@@ -24,7 +23,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   declarations: [
     AccountComponent,
     LoginComponent,
-    MaintenanceComponent,
     AccountLoadingComponent,
     AppButtonComponent
   ],

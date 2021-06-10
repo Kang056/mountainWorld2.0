@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
       sessionStorage.clear();
     } else {
       // 當前系統時間
-      const endTime = new Date(user.tokenExpiration);
+      const endTime = new Date(sessionStorage.getItem('tokenExpiration'));
       const nowTime = new Date();
       this.time = Math.floor((endTime.getTime() - nowTime.getTime()) / 1000);
       const clock = setInterval(() => {

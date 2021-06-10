@@ -25,9 +25,9 @@ export class RoleService {
   private baseUrl: string = environment.apiUrl;
 
   // 取該公司所有職位
-  getAllRole(id): Observable<any> {
+  getAllRole(): Observable<any> {
     return this.httpClient.get(
-      this.baseUrl + `/api/v2/roles?companyId=${id}`,
+      this.baseUrl + `/api/v2/roles`,
       callHeaders()
     );
   }

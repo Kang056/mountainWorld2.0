@@ -16,28 +16,41 @@ function callHeaders() {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class TempImeiService {
+export class AccountService {
+
   constructor(private httpClient: HttpClient) {}
 
   // 預設環境路由
   private baseUrl: string = environment.apiUrl;
 
-  // 查批量新增裝置.txt檔案
-  getAllTempImei(): Observable<any> {
+  // 取得所有權限
+  getAllAccount(): Observable<any> {
     return this.httpClient.get(
-      this.baseUrl + `/api/v2/tempImeis`,
-      callHeaders()
+      `http://127.0.0.1/sqlTest/account.php`,
+    );
+  }
+  // 新增帳號
+  addAccount(data): Observable<any> {
+    return this.httpClient.post(
+      this.baseUrl + '/api/v2/account.php',
+      data,
     );
   }
 
-  // 上傳批量新增裝置.txt檔案
-  addTempImei(data): Observable<any> {
-    return this.httpClient.post(
-      this.baseUrl + '/api/v2/tempImeis',
+  // 修改帳號
+  editAccount(id, data): Observable<any> {
+    return this.httpClient.patch(
+      this.baseUrl + `/api/v2/account.php/${id}`,
       data,
-      callHeaders()
+    );
+  }
+
+  // 刪除帳號
+  deleteAccount(id): Observable<any> {
+    return this.httpClient.delete(
+      this.baseUrl + `/api/v2/account.php/${id}`,
     );
   }
 }

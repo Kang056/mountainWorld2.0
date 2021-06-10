@@ -1,6 +1,6 @@
+import { AccountService } from './../../../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PersonService } from './../../../../services/person.service';
 
 @Component({
   selector: 'app-user',
@@ -10,11 +10,11 @@ import { PersonService } from './../../../../services/person.service';
 export class UserComponent implements OnInit {
 
   userData = JSON.parse(sessionStorage.getItem('user'));
-  deadline = this.userData.tokenExpiration;
+  deadline = sessionStorage.getItem('tokenExpiration');
   timeinterval: any;
   time: any;
   constructor(
-    private personService: PersonService,
+    private accountService: AccountService,
     private router: Router,
   ) {}
 
@@ -35,7 +35,7 @@ export class UserComponent implements OnInit {
             name: this.userData.user.name,
             roleIds: null,
           };
-          this.personService.editPerson(JSON.parse(sessionStorage.getItem('user')).user.id, editData)
+          this.accountService.editAccount(JSON.parse(sessionStorage.getItem('user')).user.id, editData)
           .subscribe(
             res => {
               alert('editPassword ok');

@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
     private renderer: Renderer2
   ){}
   ngOnInit() {
-    window.console.log = () => {};
+    // window.console.log = () => {};
   }
   // ngAfterViewInit(): void {
   //   this.loaderService.httpProgress().subscribe((status: boolean) => {

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ResponseService } from './../../../services/response.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from './../../../services/login.service';
@@ -17,13 +18,14 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
   rememberMe: any;
   lang = 'zh';
   isLoadind = false;
-
+  endTime: any = this.datePipe.transform(new Date().getTime() + 24 * 60 * 60 * 1000, 'yyyy-MM-ddTHH:mm:ss');
   constructor(
     private renderer: Renderer2,
     private toastr: ToastrService,
     private router: Router,
     private loginService: LoginService,
     private translate: TranslateService,
+    private datePipe: DatePipe,
     private responseService: ResponseService
   ) {
     // 添加語言支持
@@ -34,11 +36,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
     // let browserLang = null;
     translate.use(this.lang);
   }
-  // call response service
-  callResponseService(data: any, note = ''): void {
-    console.log(note, data);
-    this.responseService.whatTypeOfResponse(data);
-  }
+
+
 
   selectClick(lang: any): void {
     console.log('lang', lang.form.value.language);
@@ -54,13 +53,13 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
       };
       this.loginService.login(loginData).subscribe(
         (response) => {
-          sessionStorage.setItem('token', response.token);
-          this.addIdentity(response.token);
+          console.log(response);
+          sessionStorage.setItem('token', response.username);
+          this.addIdentity(response.username);
           form.value.remember ? localStorage.setItem('remberMe', JSON.stringify(loginData)) : localStorage.removeItem('remberMe');
         },
         (error) => {
           console.log(error);
-          this.callResponseService(error.error);
           this.isLoadind = false;
         }
       );
@@ -79,6 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
 
         this.permissionWork(response.permissions);
         sessionStorage.setItem('user', JSON.stringify(response));
+        sessionStorage.setItem('tokenExpiration', this.endTime);
         this.router.navigate(['index']);
         // this.isLoadind = false;
       },
@@ -97,243 +97,56 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
       case '[ADMIN_SUPERUSER]':
         pass = {
           aside: {
-            dashboard: true,
-            person: true,
-            organization: true,
-            company: true,
-            role: true,
-            permission: true,
-            device: true,
-            geofence: true,
-            information: true,
-            deviceModel: true,
-            project: true,
-            position: true,
-            setup: true,
-            pushNotification: true,
-            tcApi: true,
+            mountain: true,
+            map: true,
+            account: true,
+            ruler: true,
           },
-          person: {
-            select: {
-              company: true,
-              enabled: true,
-            },
-            button: {
-              add: true,
-              edit: true,
-              remove: true,
-              freeze: true,
-            },
-            addBox: {
-              companySelect: true,
-            },
-          },
-          company: {
-            select: {
-              enabled: true,
-            },
-            button: {
-              add: true,
-              edit: true,
-              freeze: true,
-            },
-          },
-          role: {
-            select: {
-              company: true,
-            },
-            button: {
-              add: true,
-              edit: true,
-            },
-            addBox: {
-              companySelect: true
-            }
-          },
-          device: {
-            select: {
-              company: true,
-              project: true,
-            },
-            button: {
-              add: true,
-              edit: true,
-              remove: true,
-              batch: true,
-              health: true,
-            },
-            addBox: {
-              companySelect: true
-            }
-          },
-          pushNotification: {
-            select: {
-              company: true,
-              project: true,
-            },
-            button: {
-              add: true,
-              remove: true,
-            },
-          },
-          tcApi: {
-            select: {
-              company: true,
-              project: true,
-            },
-            button: {
-              add: true,
-              remove: true,
-            },
-          },
-          deviceModel: {
-            button: {
-              add: true,
-              remove: true,
-            },
-          },
-          project: {
-            select: {
-              company: true,
-            },
-            button: {
-              add: true,
-              remove: true,
-            },
-            addBox: {
-              companySelect: true
-            }
-          },
-          position: {
-            select: {
-              company: true,
-              project: true,
-            },
+          account: {
             button: {
               add: true,
               edit: true,
               remove: true,
             },
-            addBox: {
-              companySelect: true
-            }
           },
-          geofence: {
-            select: {
-              company: true,
-              project: true,
-            },
+          mountain: {
             button: {
               add: true,
               edit: true,
               remove: true,
-              batch: true,
             },
-            addBox: {
-              companySelect: true
-            }
           },
-          information: {
-            select: {
-              company: true,
-              project: true,
-              type: true
-            },
-            addBox: {
-              companySelect: true
-            }
-          }
         };
         break;
       case '[MANAGER]':
         pass = {
           aside: {
-            dashboard: true,
-            position: true,
-            project: true,
-            device: true,
-            geofence: true,
-            // information: true,
-            person: true,
-            // organization: true,
-            // role: true,
+            mountain: true,
+            map: true,
+            account: true,
+            ruler: true,
           },
-          project: {
-            select: {
-              company: false,
-            },
-            button: {
-              add: true,
-              remove: true,
-            },
-          },
-          position: {
-            select: {
-              company: false,
-              project: true,
-            },
+          account: {
             button: {
               add: true,
               edit: true,
               remove: true,
             },
           },
-          geofence: {
-            select: {
-              company: false,
-              project: true,
-            },
+          mountain: {
             button: {
               add: true,
               edit: true,
               remove: true,
-              batch: true,
             },
           },
-          // information: {
-          //   select: {
-          //     project: true,
-          //     type: true
-          //   },
-          // },
-          person: {
-            select: {
-              enabled: true,
-            },
-            button: {
-              add: true,
-              edit: true,
-              remove: true,
-              freeze: true,
-            },
-          },
-          device: {
-            select: {
-              company: false,
-              project: true,
-            },
-            button: {
-              add: true,
-              edit: true,
-              remove: true,
-              batch: true,
-            },
-          },
-          // role: {
-          //   select: {
-          //     company: false,
-          //   },
-          //   button: {
-          //     add: true,
-          //     edit: true,
-          //   },
-          // },
         };
         break;
       default:
         pass = {
           aside: {
-            dashboard: true,
+            map: true,
+            ruler: true,
           },
         };
         break;

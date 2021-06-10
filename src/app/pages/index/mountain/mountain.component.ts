@@ -1,8 +1,6 @@
 import { MountainService } from './../../../services/mountain.service';
 import { ResponseService } from './../../../services/response.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import { RoleService } from './../../../services/role.service';
 import { OperatingBarComponent } from './../../../components/operating-bar/operating-bar.component';
 
 @Component({
@@ -18,58 +16,29 @@ export class MountainComponent implements OnInit {
   lightBox = ''; // 燈箱開關
   titles = []; // 主表格表頭
   btns = {
-    add: this.permissions?.person?.button?.add,
-    edit: this.permissions?.person?.button?.edit,
-    freeze: this.permissions?.person?.button?.freeze,
-    remove: this.permissions?.person?.button?.remove,
+    add: this.permissions?.mountain?.button?.add,
+    edit: this.permissions?.mountain?.button?.edit,
+    remove: this.permissions?.mountain?.button?.remove,
   }; // Operation欄位按鈕類型
   sortType = 'number'; // 排序項目
   sequence = true; // 排序形式 (true:升冪, false:降冪)
   datas: any; // 主表格資料
   @ViewChild('operatingBar') operatingBar: OperatingBarComponent; // 操作區id
-
-  freezes = { name: '', enabled: '' };
   removes = { name: '', enabled: '' };
-  companyDatas: any; // 公司選單
-  rolesData: any; // 權限
   getAllDatas: any; // getAll回傳的原始資料
   selectData: any; // 點選到的getAll單筆資料
-  selectRoles = []; // roleCheckBox
-  personStates = true; // enable選單
-  selectCompanyId: number; // companyId選單
+
 
   // error訊息
   errorName = '';
   errorUsername = '';
-  errorCompany = '';
   errorRole = '';
 
   constructor(
-
     private mountainService: MountainService,
-    private roleService: RoleService,
     private responseService: ResponseService
   ) {}
-  // call response service
-  callResponseService(data: any, note = ''): void {
-    const err = this.responseService.whatTypeOfResponse(data);
-    if (err) {
-      err.map((item) => {
-        const names = ['name', 'username', 'company', 'role'];
-        names.map((log) => {
-          if (item.fieldName === log) {
-            eval(`this.error${this.caps(log)} += '${item.reason}';`);
-          }
-        });
-      });
-    } else {
-      console.log(note, data);
-    }
-  }
-  caps(str: string) {
-    // 轉大寫
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+
   // 燈箱開關
   selected(data: any, ligthBoxType: string): void {
     this.selectData = data;
@@ -144,7 +113,7 @@ export class MountainComponent implements OnInit {
         this.datasWork();
       },
       (error) => {
-        this.callResponseService(error.error, 'getAll ng');
+        this.errorWork(error);
         this.getAllDatas = null;
         this.datas = [];
       }
@@ -154,9 +123,6 @@ export class MountainComponent implements OnInit {
   // 新增
   addMountain(form): void {
     this.errorReset();
-    form.value.companyId
-      ? (form.value.companyId = form.value.companyId)
-      : (form.value.companyId = this.selectCompanyId);
     this.mountainService.addMountain(form.value).subscribe(
       (response) => {
         console.log('add ok', response);
@@ -164,7 +130,7 @@ export class MountainComponent implements OnInit {
         this.lightBox = '';
       },
       (error) => {
-        this.callResponseService(error.error, 'add ng');
+        this.errorWork(error);
       }
     );
   }
@@ -180,30 +146,11 @@ export class MountainComponent implements OnInit {
         this.getAllMountain();
       },
       (error) => {
-        this.callResponseService(error.error, 'edit ng');
+        this.errorWork(error);
       }
     );
   }
 
-  // 凍結
-  freezeMountain(): void {
-    const editData = {
-      enabled: this.selectData.enabled ? false : true,
-      name: this.selectData.name,
-      roleIds: [],
-      sex: this.selectData.sex,
-    };
-    this.mountainService.editMountain(this.selectData.id, editData).subscribe(
-      (response) => {
-        console.log('freeze ok', response);
-        this.lightBoxClose();
-        this.getAllMountain();
-      },
-      (error) => {
-        this.callResponseService(error.error, 'freeze ng');
-      }
-    );
-  }
 
   // 刪除
   deleteMountain(): void {
@@ -214,7 +161,7 @@ export class MountainComponent implements OnInit {
         this.getAllMountain();
       },
       (error) => {
-        this.callResponseService(error.error, 'remove ng');
+        this.errorWork(error);
       }
     );
   }
@@ -222,8 +169,26 @@ export class MountainComponent implements OnInit {
   errorReset(): void {
     this.errorName = '';
     this.errorUsername = '';
-    this.errorCompany = '';
     this.errorRole = '';
+  }
+
+  errorWork(error): void {
+    const err = this.responseService.backResponse(error);
+    if (err) {
+      err.forEach((item) => {
+        if (item.fieldName === 'name') {
+          this.errorName += ` ${item.reason}`;
+        }
+        if (item.fieldName === 'detail') {
+          this.errorUsername += ` ${item.reason}`;
+        }
+        if (item.fieldName === 'permissionIds') {
+          this.errorRole += ` ${item.reason}`;
+        }
+      });
+    } else {
+      console.log('表單沒錯', err);
+    }
   }
 
   ngOnInit(): void {

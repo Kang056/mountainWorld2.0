@@ -1,7 +1,6 @@
+import { AccountService } from './../../../services/account.service';
 import { ResponseService } from './../../../services/response.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CompanyService } from './../../../services/company.service';
-import { PersonService } from './../../../services/person.service';
 import { RoleService } from './../../../services/role.service';
 import { OperatingBarComponent } from './../../../components/operating-bar/operating-bar.component';
 
@@ -18,57 +17,32 @@ export class AccountComponent implements OnInit {
   lightBox = ''; // 燈箱開關
   titles = []; // 主表格表頭
   btns = {
-    add: this.permissions?.person?.button?.add,
-    edit: this.permissions?.person?.button?.edit,
-    freeze: this.permissions?.person?.button?.freeze,
-    remove: this.permissions?.person?.button?.remove,
+    add: this.permissions?.accoumt?.button?.add,
+    edit: this.permissions?.accoumt?.button?.edit,
+    remove: this.permissions?.accoumt?.button?.remove,
   }; // Operation欄位按鈕類型
   sortType = 'number'; // 排序項目
   sequence = true; // 排序形式 (true:升冪, false:降冪)
   datas: any; // 主表格資料
   @ViewChild('operatingBar') operatingBar: OperatingBarComponent; // 操作區id
-  freezes = { name: '', enabled: '' };
   removes = { name: '', enabled: '' };
-  companyDatas: any; // 公司選單
   rolesData: any; // 權限
   getAllDatas: any; // getAll回傳的原始資料
   selectData: any; // 點選到的getAll單筆資料
   selectRoles = []; // roleCheckBox
-  personStates = true; // enable選單
-  selectCompanyId: number; // companyId選單
+
 
   // error訊息
   errorName = '';
   errorUsername = '';
-  errorCompany = '';
   errorRole = '';
 
   constructor(
-    private companyService: CompanyService,
-    private personService: PersonService,
+    private accountService: AccountService,
     private roleService: RoleService,
     private responseService: ResponseService
   ) {}
-  // call response service
-  callResponseService(data: any, note = ''): void {
-    const err = this.responseService.whatTypeOfResponse(data);
-    if (err) {
-      err.map((item) => {
-        const names = ['name', 'username', 'company', 'role'];
-        names.map((log) => {
-          if (item.fieldName === log) {
-            eval(`this.error${this.caps(log)} += '${item.reason}';`);
-          }
-        });
-      });
-    } else {
-      console.log(note, data);
-    }
-  }
-  caps(str: string) {
-    // 轉大寫
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+
   // 燈箱開關
   selected(data: any, ligthBoxType: string): void {
     this.selectData = data;
@@ -95,25 +69,6 @@ export class AccountComponent implements OnInit {
     this.datasWork();
   }
 
-  // 下拉選單過濾(凍結狀態)
-  personStatesFilter(personDatas: any): void {
-    let datas;
-    if (this.personStates) {
-      datas = personDatas.filter((item) => {
-        if (item.enabled === true) {
-          return item;
-        }
-      });
-    } else {
-      datas = personDatas.filter((item) => {
-        if (item.enabled === false) {
-          return item;
-        }
-      });
-    }
-    return datas;
-  }
-
   // 排序作業
   datasSort(datas: any): void {
     const idx = this.titles.indexOf(this.sortType);
@@ -131,10 +86,8 @@ export class AccountComponent implements OnInit {
 
   // 資料整理
   datasWork(): void {
-    // 凍結狀態過濾
-    this.datas = this.personStatesFilter(this.getAllDatas);
     // 篩選
-    this.datas = this.operatingBar.datasSearch(this.datas);
+    this.datas = this.operatingBar.datasSearch(this.getAllDatas);
     // 排序
     this.datas = this.datasSort(this.datas);
   }
@@ -155,7 +108,7 @@ export class AccountComponent implements OnInit {
 
   // checkBox表單顯示前處理
   checkBoxWork(): void {
-    this.roleService.getAllRole(this.selectCompanyId).subscribe(
+    this.roleService.getAllRole().subscribe(
       (response) => {
         this.rolesData = response;
         this.rolesData.forEach((item) => {
@@ -169,7 +122,7 @@ export class AccountComponent implements OnInit {
         console.log('this.selectRoles', this.selectRoles);
       },
       (error) => {
-        this.callResponseService(error.error, 'getAllPermission');
+        this.errorWork(error);
       }
     );
   }
@@ -180,8 +133,8 @@ export class AccountComponent implements OnInit {
     }
   }
   // 取得所有
-  getAllPerson(): void {
-    this.personService.getAllPerson(1, true).subscribe(
+  getAllAccount(): void {
+    this.accountService.getAllAccount().subscribe(
       (response) => {
         console.log('getAll', response);
         this.getAllDatas = response;
@@ -198,7 +151,7 @@ export class AccountComponent implements OnInit {
         this.datasWork();
       },
       (error) => {
-        this.callResponseService(error.error, 'getAll ng');
+        this.errorWork(error);
         this.getAllDatas = null;
         this.datas = [];
       }
@@ -206,23 +159,22 @@ export class AccountComponent implements OnInit {
   }
 
   // 新增
-  addPerson(form): void {
+  addAccount(form): void {
     this.errorReset();
-    form.value.companyId = 1;
-    this.personService.addPerson(form.value).subscribe(
+    this.accountService.addAccount(form.value).subscribe(
       (response) => {
         console.log('add ok', response);
-        this.getAllPerson();
+        this.getAllAccount();
         this.lightBox = '';
       },
       (error) => {
-        this.callResponseService(error.error, 'add ng');
+        this.errorWork(error);
       }
     );
   }
 
   // 修改
-  editPerson(form): void {
+  editAccount(form): void {
     this.errorReset();
     form.value.roleIds = this.roleDataWork(form.value);
     form.value.enabled = this.selectData.enabled;
@@ -231,29 +183,29 @@ export class AccountComponent implements OnInit {
     editData.name = form.value.name;
     editData.roleIds = form.value.roleIds;
     console.log('editData', editData);
-    this.personService.editPerson(this.selectData.id, editData).subscribe(
+    this.accountService.editAccount(this.selectData.id, editData).subscribe(
       (response) => {
         console.log('edit ok', response);
         this.lightBoxClose();
-        this.getAllPerson();
+        this.getAllAccount();
       },
       (error) => {
-        this.callResponseService(error.error, 'edit ng');
+        this.errorWork(error);
       }
     );
   }
 
 
   // 刪除
-  deletePerson(): void {
-    this.personService.deletePerson(this.selectData.id).subscribe(
+  deleteAccount(): void {
+    this.accountService.deleteAccount(this.selectData.id).subscribe(
       (response) => {
         console.log('remove ok', response);
         this.lightBoxClose();
-        this.getAllPerson();
+        this.getAllAccount();
       },
       (error) => {
-        this.callResponseService(error.error, 'remove ng');
+        this.errorWork(error);
       }
     );
   }
@@ -261,12 +213,31 @@ export class AccountComponent implements OnInit {
   errorReset(): void {
     this.errorName = '';
     this.errorUsername = '';
-    this.errorCompany = '';
     this.errorRole = '';
   }
 
+
+  errorWork(error): void {
+    const err = this.responseService.backResponse(error);
+    if (err) {
+      err.forEach((item) => {
+        if (item.fieldName === 'name') {
+          this.errorName += ` ${item.reason}`;
+        }
+        if (item.fieldName === 'detail') {
+          this.errorUsername += ` ${item.reason}`;
+        }
+        if (item.fieldName === 'permissionIds') {
+          this.errorRole += ` ${item.reason}`;
+        }
+      });
+    } else {
+      console.log('表單沒錯', err);
+    }
+  }
+
   ngOnInit(): void {
-    this.getAllPerson();
+    this.getAllAccount();
   }
 
 }

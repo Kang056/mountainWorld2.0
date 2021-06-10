@@ -27,7 +27,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   selectData: any; // 點選到的getAll單筆資料
 
-
   titles = []; // 主表格表頭
 
   gpxDatas: any;
@@ -40,22 +39,7 @@ export class MapComponent implements OnInit, OnDestroy {
     private responseService: ResponseService,
     private ngZone: NgZone,
   ) {}
-  // call response service
-  callResponseService(data: any, note = ''): void {
-    const err = this.responseService.whatTypeOfResponse(data);
-    if (err) {
-      err.map((item) => {
-        const names = ['name', 'description', 'type'];
-        names.map((log) => {
-          if (item.fieldName === log) {
-            eval(`this.error${this.caps(log)} += '${item.reason}';`);
-          }
-        });
-      });
-    } else {
-      console.log(note, data);
-    }
-  }
+
 
 
   // 開啟燈箱
@@ -116,7 +100,7 @@ export class MapComponent implements OnInit, OnDestroy {
         this.datasWork();
       },
       (error) => {
-        this.callResponseService(error.error);
+        this.errorWork(error);
         this.getAllDatas = null;
         this.datas = [];
       }
@@ -163,9 +147,24 @@ export class MapComponent implements OnInit, OnDestroy {
     this.errorDescription = '';
     this.errorType = '';
   }
-  caps(str: string) {
-    // 轉大寫
-    return str.charAt(0).toUpperCase() + str.slice(1);
+
+  errorWork(error): void {
+    const err = this.responseService.backResponse(error);
+    if (err) {
+      err.forEach((item) => {
+        if (item.fieldName === 'name') {
+          this.errorName += ` ${item.reason}`;
+        }
+        if (item.fieldName === 'detail') {
+          this.errorDescription += ` ${item.reason}`;
+        }
+        if (item.fieldName === 'permissionIds') {
+          this.errorType += ` ${item.reason}`;
+        }
+      });
+    } else {
+      console.log('表單沒錯', err);
+    }
   }
   ngOnInit(): void {
     this.mapInit();

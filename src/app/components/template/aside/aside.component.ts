@@ -15,7 +15,7 @@ export class AsideComponent implements OnInit {
   userData = JSON.parse(sessionStorage.getItem('user'));
   // permissions = JSON.parse(sessionStorage.getItem('user')).permissions;
   permissions = JSON.parse(sessionStorage.getItem('permissions'));
-  lang = JSON.parse(sessionStorage.getItem('user')).user.companyPo.language;
+  lang = 'zh';
   constructor(
     private translate: TranslateService
   ) {

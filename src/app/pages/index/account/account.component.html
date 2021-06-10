@@ -94,7 +94,7 @@
         </label>
       </div>
       <div class="buttonArea">
-        <app-index-button [text]="'doAdd'" [type]="'action'" (doActionEvent)="addPerson(addForm)" [form]="addForm" ></app-index-button>
+        <app-index-button [text]="'doAdd'" [type]="'action'" (doActionEvent)="addAccount(addForm)" [form]="addForm" ></app-index-button>
         <app-index-button [text]="'cancel'" [type]="'cancel'" (lightBoxCloseEvent)="lightBoxClose()"></app-index-button>
       </div>
     </form>
@@ -113,11 +113,11 @@
         </label>
       </div>
       <div class="buttonArea">
-        <app-index-button [text]="'doEdit'" [type]="'action'" (doActionEvent)="editPerson(editForm)" [form]="editForm"></app-index-button>
+        <app-index-button [text]="'doEdit'" [type]="'action'" (doActionEvent)="editAccount(editForm)" [form]="editForm"></app-index-button>
         <app-index-button [text]="'cancel'" [type]="'cancel'" (lightBoxCloseEvent)="lightBoxClose()"></app-index-button>
       </div>
     </form>
   </div>
   <!-- 刪除 -->
-  <app-remove-box [pageName]="pageName" [removes]="removes" [lightBox]="lightBox" (removeClickEvent)="deletePerson()" (lightBoxCloseEvent)="lightBoxClose()"></app-remove-box>
+  <app-remove-box [pageName]="pageName" [removes]="removes" [lightBox]="lightBox" (removeClickEvent)="deleteAccount()" (lightBoxCloseEvent)="lightBoxClose()"></app-remove-box>
 </div>

@@ -41,18 +41,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     IndexComponent,
-
-    // DeviceComponent,
-    // ProjectComponent,
-    // PaginationComponent,
-    // DeformedTableComponent,
     CsvComponent,
-
     AsideComponent,
     HeaderComponent,
     IndexLoadingComponent,
-    // MessageComponent,
-    // NotificationComponent,
     UserComponent,
 
     IndexButtonComponent,
@@ -62,9 +54,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FreezeBoxComponent,
     RemoveBoxComponent,
     TableSortComponent,
-    // HealthComponent,
-    // BatchBindGeofenceComponent,
-    // BatchBindHealthComponent,
 
 
     SafePipe,

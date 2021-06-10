@@ -28,13 +28,13 @@ export class MountainService {
   // 取得所有權限
   getAllMountain(): Observable<any> {
     return this.httpClient.get(
-      `http://127.0.0.1/sqlTest/getApi.php`,
+      `http://127.0.0.1/sqlTest/mountain.php`,
     );
   }
   // 新增帳號
   addMountain(data): Observable<any> {
     return this.httpClient.post(
-      this.baseUrl + '/api/v2/getApi.php',
+      this.baseUrl + '/api/v2/mountain.php',
       data,
     );
   }
@@ -42,7 +42,7 @@ export class MountainService {
   // 修改帳號
   editMountain(id, data): Observable<any> {
     return this.httpClient.patch(
-      this.baseUrl + `/api/v2/getApi.php/${id}`,
+      this.baseUrl + `/api/v2/mountain.php/${id}`,
       data,
     );
   }
@@ -50,7 +50,7 @@ export class MountainService {
   // 刪除帳號
   deleteMountain(id): Observable<any> {
     return this.httpClient.delete(
-      this.baseUrl + `/api/v2/getApi.php/${id}`,
+      this.baseUrl + `/api/v2/mountain.php/${id}`,
     );
   }
 }
