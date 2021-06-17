@@ -32,18 +32,27 @@ function drawMarker(data) {
   marker.bindPopup(`
     <h5>${data.name}</h5>
     <hr>
-    <p>排名 : ${data.id}</p>
+    <p>排名 : ${data.rank}</p>
     <p>標高 : ${data.elevation}</p>
     <p>等級 : ${data.grade}</p>
     <p>地點 : ${data.position}</p>
     <p>國家公園 : ${data.nationalPark}</p>
     <p>稱號 : ${data.designation}</p>
+    <hr>
+    <div class="btn" style="background:#377ebb;color:white;vertical-align: revert;" onclick="myFunction(${data.elevation})">軌跡資訊</div>
   `);
   marker.bindTooltip(`<h5>${data.name}</h5>`);
   marker.on('click', function () {
     focusMark(data);
   });
   markArray.push(marker);
+}
+
+function myFunction(elevation){
+  console.log('elevation', elevation);
+  window.elevation.zone.run(() => { // 發送點擊到的模型fid給頁面顯示該區域的device資料
+    window.elevation.loadAngularFunction(elevation);
+  });
 }
 
 // 歷史紀錄
@@ -62,34 +71,8 @@ function drawRecordMark(data) {
   })
 }
 
-function focus(data) {
-  iconArray[0] ? iconArray.forEach((item) => item.remove()) : false;
-  iconArray = [];
-  const icon = L.icon({
-    iconUrl: 'assets/img/gpwear/map/focus.png',
-    iconSize: [30, 48], // 座標圖大小
-    iconAnchor: [15, 47], // 座標的相對位置
-  });
-  const marker = L.marker([data.latitude, data.longitude], {
-    icon: icon,
-    autoPan: true,
-  }).addTo(mymap);
-  iconArray.push(marker);
-  marker.bindPopup(`
-  <h5>${data.name}</h5>
-  <hr>
-  <p>排名 : ${data.id}</p>
-  <p>標高 : ${data.elevation}</p>
-  <p>等級 : ${data.grade}</p>
-  <p>地點 : ${data.position}</p>
-  <p>國家公園 : ${data.nationalPark}</p>
-  <p>稱號 : ${data.designation}</p>
-   `);// <p>Status : ${data.status}</p>
-  marker.bindTooltip(`<h5>${data.name}</h5>`);
-  mymap.setView([data.latitude, data.longitude], 17);
-}
-
 function focusMark(data) {
+  console.log('666');
   iconArray[0] ? iconArray.forEach((item) => item.remove()) : false;
   iconArray = [];
   const icon = L.icon({
@@ -105,13 +88,15 @@ function focusMark(data) {
   marker.bindPopup(`
     <h5>${data.name}</h5>
     <hr>
-    <p>排名 : ${data.id}</p>
+    <p>排名 : ${data.rank}</p>
     <p>標高 : ${data.elevation}</p>
     <p>等級 : ${data.grade}</p>
     <p>地點 : ${data.position}</p>
     <p>國家公園 : ${data.nationalPark}</p>
     <p>稱號 : ${data.designation}</p>
-   `);// <p>Status : ${data.status}</p>
+    <hr>
+    <div class="btn" style="background:#377ebb;color:white;vertical-align: revert;" onclick="myFunction(${data.elevation})">軌跡資訊</div>
+   `);
   marker.bindTooltip(`<h5>${data.name}</h5>`);
   window.getGPX.zone.run(() => { // 發送點擊到的模型fid給頁面顯示該區域的device資料
     window.getGPX.loadAngularFunction(data.elevation);

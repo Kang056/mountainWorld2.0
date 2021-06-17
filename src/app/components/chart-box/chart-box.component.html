@@ -1,0 +1,61 @@
+<div class="chartBox" *ngIf="lightBox==='chartBox'" (window:resize)="onResize($event)">
+  <div class="controlBar">
+    <h6>
+      {{'track' | translate}}
+      <i class="fas fa-times" (click)="lightBoxClose()"></i>
+      <div class="clearfix"></div>
+    </h6>
+  </div>
+  <div class="content">
+    <div class="chartView">
+      <div class="opBar">
+        <div class="tab">
+          <div class="wrap">
+            <div [ngClass]="isChart?'on':''" (click)="isChart=true;">
+              <i class="fas fa-chart-line"></i>
+              {{ 'chart' | translate }}
+            </div>
+            <div [ngClass]="!isChart?'on':''" (click)="isChart=false">
+              <i class="fas fa-table"></i>
+              {{ 'table' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="specialBtn">
+          <span class="text">{{'dackMode' | translate}}</span>
+          <label>
+            <input type="checkbox"  class="checkbox" (click)="moldChange()">
+            <span class="btn-box" [class]="myTheme=='dark'?'btnOn':'btnClose'">
+              <span class="btn"></span>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="chartAndTable">
+        <div class="chart" *ngIf="isChart">
+          <div class="canvasBox">
+            <div echarts [options]="echartoption" [theme]="myTheme" class="canvasItem"></div>
+          </div>
+        </div>
+        <div class="tableBox" *ngIf="!isChart">
+          <div class="content scrollbarstyle">
+            <table>
+              <thead>
+                <tr>
+                  <th>{{ 'ele' | translate }} (M)</th>
+                  <th>{{ 'time' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of elevation;let no=index">
+                  <td>{{ data.ele }}</td>
+                  <td>{{ data.time | date:'yyyy/MM/dd hh:mm:ss' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

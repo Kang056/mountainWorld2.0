@@ -16,7 +16,6 @@ export class TableSortComponent implements OnInit {
 
   // 排序按鈕
   sortBtnClick(key: string, sequence: boolean): void {
-    console.log('key', key, 'sequence', sequence);
     this.sortBtnEvent.emit({key, sequence});
   }
 

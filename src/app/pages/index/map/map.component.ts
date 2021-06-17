@@ -1,3 +1,4 @@
+import { ChartBoxComponent } from './../../../components/chart-box/chart-box.component';
 import { MountainService } from './../../../services/mountain.service';
 import { ResponseService } from './../../../services/response.service';
 import { Component, OnInit, ViewChild, OnDestroy, NgZone } from '@angular/core';
@@ -17,6 +18,7 @@ export class MapComponent implements OnInit, OnDestroy {
   lightBox = ''; // 燈箱開關
   datas: any; // 主表格資料 某公司某專案的裝置資訊
   @ViewChild('operatingBar') operatingBar: OperatingBarComponent; // 操作區id
+  @ViewChild('chartBox') chartBox: ChartBoxComponent; // 操作區id
   // error訊息
   errorName = '';
   errorDescription = '';
@@ -31,7 +33,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   gpxDatas: any;
 
-
+  points: any;
   // 健康資訊
   healthData: any;
   constructor(
@@ -116,15 +118,15 @@ export class MapComponent implements OnInit, OnDestroy {
         const gpx = new gpxParser();
         gpx.parse(xhr.response);
         const totalDistance = gpx.tracks[0].distance.total; // 總距離
-        const points = gpx.tracks[0].points;
+        this.points = gpx.tracks[0].points;
         const geoJSON = gpx.toGeoJSON();
         // console.log('gpx', gpx);
-        console.log('points', points);
+        console.log('points', this.points);
         // console.log('points', gpx.tracks[0].points);
         // console.log('totalDistance', totalDistance);
         // console.log('geoJSON', geoJSON);
         // console.log(geoJSON.features[0].geometry.coordinates);
-        (window as any).drawRecordMark(points);
+        (window as any).drawRecordMark(this.points);
       };
       xhr.open('get', `assets/gpxs/${elevation}.gpx`, true);
       xhr.send(null);
@@ -132,6 +134,11 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
 
+  elevationChart(elevation) {
+    console.log(this.points);
+    this.lightBox = 'chartBox';
+    this.chartBox.chartWork(this.points);
+  }
 
   mapInit(): void {
     (window as any).mapInit();
@@ -174,6 +181,12 @@ export class MapComponent implements OnInit, OnDestroy {
       component: this,
       zone: this.ngZone,
       loadAngularFunction: (elevation) => (this.getGPX(elevation)),
+    };
+    // tslint:disable-next-line: no-string-literal
+    window['elevation'] = {
+      component: this,
+      zone: this.ngZone,
+      loadAngularFunction: (elevation) => (this.elevationChart(elevation)),
     };
   }
 

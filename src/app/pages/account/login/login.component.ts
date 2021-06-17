@@ -75,8 +75,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
   addIdentity(token: string): void {
     this.loginService.addIdentity(token).subscribe(
       (response) => {
-
-        this.permissionWork(response.permissions);
+        console.log('userData', response);
+        this.permissionWork(response[0]?.roleId);
         sessionStorage.setItem('user', JSON.stringify(response));
         sessionStorage.setItem('tokenExpiration', this.endTime);
         this.router.navigate(['index']);
@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
   permissionWork(permissions: string): void {
     let pass = {};
     switch (permissions) {
-      case '[ADMIN_SUPERUSER]':
+      case '1':
         pass = {
           aside: {
             mountain: true,
@@ -118,26 +118,19 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
           },
         };
         break;
-      case '[MANAGER]':
+      case '2':
         pass = {
           aside: {
             mountain: true,
             map: true,
-            account: true,
-            ruler: true,
-          },
-          account: {
-            button: {
-              add: true,
-              edit: true,
-              remove: true,
-            },
+            account: false,
+            // ruler: true,
           },
           mountain: {
             button: {
-              add: true,
-              edit: true,
-              remove: true,
+              add: false,
+              edit: false,
+              remove: false,
             },
           },
         };
@@ -145,8 +138,17 @@ export class LoginComponent implements OnInit, OnDestroy, AfterContentInit {
       default:
         pass = {
           aside: {
+            mountain: true,
             map: true,
-            ruler: true,
+            account: false,
+            // ruler: true,
+          },
+          mountain: {
+            button: {
+              add: false,
+              edit: false,
+              remove: false,
+            },
           },
         };
         break;

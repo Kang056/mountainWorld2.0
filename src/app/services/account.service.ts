@@ -34,23 +34,21 @@ export class AccountService {
   // 新增帳號
   addAccount(data): Observable<any> {
     return this.httpClient.post(
-      this.baseUrl + '/api/v2/account.php',
-      data,
+      'http://127.0.0.1/sqlTest/account.php', data,
     );
   }
 
   // 修改帳號
-  editAccount(id, data): Observable<any> {
-    return this.httpClient.patch(
-      this.baseUrl + `/api/v2/account.php/${id}`,
-      data,
+  editAccount(data): Observable<any> {
+    return this.httpClient.put(
+      `http://127.0.0.1/sqlTest/account.php`, data,
     );
   }
 
   // 刪除帳號
-  deleteAccount(id): Observable<any> {
-    return this.httpClient.delete(
-      this.baseUrl + `/api/v2/account.php/${id}`,
+  deleteAccount(data): Observable<any> {
+    return this.httpClient.post(
+      `http://127.0.0.1/sqlTest/accountDel.php`, data,
     );
   }
 }

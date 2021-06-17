@@ -24,7 +24,6 @@ export class OperatingBarComponent implements OnInit {
 
   // 關鍵字搜尋作業
   datasSearch(datas: any) {
-    console.log(datas);
     const searchDatas = datas.filter(item => {
       let find = false;
       Object.values(item).forEach(data => {

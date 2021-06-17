@@ -34,23 +34,21 @@ export class MountainService {
   // 新增帳號
   addMountain(data): Observable<any> {
     return this.httpClient.post(
-      this.baseUrl + '/api/v2/mountain.php',
-      data,
+      `http://127.0.0.1/sqlTest/mountain.php`, data,
     );
   }
 
   // 修改帳號
-  editMountain(id, data): Observable<any> {
-    return this.httpClient.patch(
-      this.baseUrl + `/api/v2/mountain.php/${id}`,
-      data,
+  editMountain(data): Observable<any> {
+    return this.httpClient.put(
+      `http://127.0.0.1/sqlTest/mountain.php`, data,
     );
   }
 
   // 刪除帳號
-  deleteMountain(id): Observable<any> {
-    return this.httpClient.delete(
-      this.baseUrl + `/api/v2/mountain.php/${id}`,
+  deleteMountain(data): Observable<any> {
+    return this.httpClient.post(
+      `http://127.0.0.1/sqlTest/mountainDel.php`, data,
     );
   }
 }

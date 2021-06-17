@@ -1,7 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { MountainService } from './../../../services/mountain.service';
 import { ResponseService } from './../../../services/response.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OperatingBarComponent } from './../../../components/operating-bar/operating-bar.component';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-mountain',
@@ -28,7 +30,6 @@ export class MountainComponent implements OnInit {
   getAllDatas: any; // getAll回傳的原始資料
   selectData: any; // 點選到的getAll單筆資料
 
-
   // error訊息
   errorName = '';
   errorUsername = '';
@@ -36,15 +37,14 @@ export class MountainComponent implements OnInit {
 
   constructor(
     private mountainService: MountainService,
-    private responseService: ResponseService
+    private responseService: ResponseService,
+    private datePipe: DatePipe
   ) {}
 
   // 燈箱開關
   selected(data: any, ligthBoxType: string): void {
     this.selectData = data;
     this.lightBox = ligthBoxType;
-
-
     if (ligthBoxType === 'remove') {
       this.removes.name = data.name;
       this.removes.enabled = data.enabled;
@@ -58,16 +58,12 @@ export class MountainComponent implements OnInit {
     this.errorReset();
   }
 
-
-
   // 排序
   setSort(setSortTypeData: any): void {
     this.sortType = setSortTypeData.key;
     this.sequence = setSortTypeData.sequence;
     this.datasWork();
   }
-
-
 
   // 排序作業
   datasSort(datas: any): void {
@@ -98,6 +94,33 @@ export class MountainComponent implements OnInit {
       this.titles.push(key);
     }
   }
+
+  export(): void {
+
+    const arr = []; // 表格內容(value), 1次1列
+    const title = []; // 表頭(key)
+    const wscols = []; // 表頭欄寬
+    for (const [key, value] of Object.entries(this.datas[0])) {
+      title.push(key);
+      wscols.push({ wch: 20 }); // 取得該欄位(value)的字元長度
+    }
+    arr.push(title);
+    console.log(arr);
+    this.datas.forEach((item) => {
+      const element = [];
+      for (const [key, value] of Object.entries(item)) {
+        element.push(value);
+      }
+      console.log(element);
+      arr.push(element);
+    });
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(arr);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    ws['!cols'] = wscols;
+    XLSX.utils.book_append_sheet(wb, ws, 'list');
+    XLSX.writeFile(wb, 'Mountains data(' + this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm') + ').xlsx');
+  }
+
   // 取得所有
   getAllMountain(): void {
     this.mountainService.getAllMountain().subscribe(
@@ -138,8 +161,9 @@ export class MountainComponent implements OnInit {
   // 修改
   editMountain(form): void {
     this.errorReset();
+    form.value.id = this.selectData.id;
     console.log('editData', form.value);
-    this.mountainService.editMountain(this.selectData.id, form.value).subscribe(
+    this.mountainService.editMountain(form.value).subscribe(
       (response) => {
         console.log('edit ok', response);
         this.lightBoxClose();
@@ -151,10 +175,13 @@ export class MountainComponent implements OnInit {
     );
   }
 
-
   // 刪除
   deleteMountain(): void {
-    this.mountainService.deleteMountain(this.selectData.id).subscribe(
+    console.log(this.selectData.id);
+    const deleteData = {
+      id: this.selectData.id
+    };
+    this.mountainService.deleteMountain(deleteData).subscribe(
       (response) => {
         console.log('remove ok', response);
         this.lightBoxClose();

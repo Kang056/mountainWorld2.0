@@ -2,19 +2,12 @@
 
 .btn {
   width: 95px;
-  // font-size: 1rem;
   display: inline;
   margin: 2px 5px;
   color: $white;
   height: 30px;
-  // line-height: 1rem;
-  // font-size: unset;
   padding: 0;
   vertical-align: revert;
-  // &:active{
-  //   background: #FFFFFF;
-  //   color:#000;
-  // }
   &:hover {
     color: $white;
     box-shadow: 0 0px 2px $black;
@@ -46,7 +39,8 @@
 .btn-record,
 .btn-dital,
 .btn-detail,
-.btn-bind {
+.btn-bind,
+.btn-xlsx {
   background: $button1;
 }
 .btn-remove,

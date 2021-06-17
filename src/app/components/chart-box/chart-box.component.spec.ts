@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CsvComponent } from './csv.component';
+import { ChartBoxComponent } from './chart-box.component';
 
-describe('CsvComponent', () => {
-  let component: CsvComponent;
-  let fixture: ComponentFixture<CsvComponent>;
+describe('ChartBoxComponent', () => {
+  let component: ChartBoxComponent;
+  let fixture: ComponentFixture<ChartBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CsvComponent ]
+      declarations: [ ChartBoxComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CsvComponent);
+    fixture = TestBed.createComponent(ChartBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,6 +8,7 @@
       <app-operating-bar #operatingBar [titles]="titles" (datasWorkEvent)="datasWork()"></app-operating-bar>
       <!-- 新增按鈕 -->
       <app-index-button *ngIf="btns?.add" [text]="'add'" [type]="'lightBox'" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+      <app-index-button [text]="'xlsx'" [type]="'action'" (doActionEvent)="export()" [form]="true"></app-index-button>
     </div>
     <div class="tableBox scrollbarstyle">
       <!-- 表格 -->
@@ -21,7 +22,7 @@
               <app-table-sort [name]="'name'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
             </th>
             <th>
-              <app-table-sort [name]="'id'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
+              <app-table-sort [name]="'rank'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
             </th>
             <th>
               <app-table-sort [name]="'elevation'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
@@ -44,14 +45,14 @@
             <th>
               <app-table-sort [name]="'designation'" [sortType]="sortType" [sequence]="sequence" (sortBtnEvent)="setSort($event)"></app-table-sort>
             </th>
-            <th>{{ 'operation' | translate }}</th>
+            <th *ngIf="btns?.edit">{{ 'operation' | translate }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of datas">
             <td>{{ data?.number }}</td>
             <td>{{ data?.name }}</td>
-            <td>{{ data?.id }}</td>
+            <td>{{ data?.rank }}</td>
             <td>{{ data?.elevation }}</td>
             <td>{{ data?.grade }}</td>
             <td>{{ data?.position }}</td>
@@ -59,9 +60,9 @@
             <td>{{ data?.latitude }}</td>
             <td>{{ data?.longitude }}</td>
             <td>{{ data?.designation }}</td>
-            <td>
-              <app-index-button  [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
-              <app-index-button  [text]="'remove'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+            <td *ngIf="btns?.edit">
+              <app-index-button *ngIf="btns?.edit" [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+              <app-index-button *ngIf="btns?.remove" [text]="'remove'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
             </td>
           </tr>
         </tbody>
@@ -77,7 +78,7 @@
         <div class="wrap" *ngFor="let data of datas">
           <p>{{ 'number' | translate }} : {{ data?.number }}</p>
           <p>{{ 'name' | translate }} : {{ data?.name }}</p>
-          <p>{{ 'id' | translate }} : {{ data?.id }}</p>
+          <p>{{ 'rank' | translate }} : {{ data?.rank }}</p>
           <p>{{ 'elevation' | translate }} : {{ data?.elevation }}</p>
           <p>{{ 'grade' | translate }} : {{ data?.grade }}</p>
           <p>{{ 'position' | translate }} : {{ data?.position }}</p>
@@ -103,10 +104,66 @@
     <h6>{{ 'add' | translate }}{{ pageName | translate }}</h6>
     <form #addForm="ngForm" class="scrollbarstyle">
       <div class="inputArea">
-        <input type="text" name="name" (click)="errorReset()" placeholder="EX: {{ 'position' | translate }}{{ 'name' | translate }}" ngModel required>
+        <input type="text" name="name" (click)="errorReset()" placeholder="EX: {{ '玉山' | translate }}" ngModel required>
         <label>
           <span> * </span>
           {{ 'name' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="rank" (click)="errorReset()" placeholder="EX: {{ '1' | translate }}" ngModel required>
+        <label>
+          {{ 'rank' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="elevation" (click)="errorReset()" placeholder="EX: {{ '3952' | translate }}" ngModel required>
+        <label>
+          {{ 'elevation' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="grade" (click)="errorReset()" placeholder="EX: {{ 'A' | translate }}" ngModel required>
+        <label>
+          {{ 'grade' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="position" (click)="errorReset()" placeholder="EX: {{ '南投縣' | translate }}" ngModel required>
+        <label>
+          {{ 'position' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="nationalPark" (click)="errorReset()" placeholder="EX: {{ '玉山國家公園' | translate }}" ngModel required>
+        <label>
+          {{ 'nationalPark' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="latitude" (click)="errorReset()" placeholder="EX: {{ '25.17066' | translate }}" ngModel required>
+        <label>
+          {{ 'latitude' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="longitude" (click)="errorReset()" placeholder="EX: {{ '121.553448' | translate }}" ngModel required>
+        <label>
+          {{ 'longitude' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="designation" (click)="errorReset()" placeholder="EX: {{ '五嶽' | translate }}" ngModel required>
+        <label>
+          {{ 'designation' | translate }}
           <span>{{ errorName }}</span>
         </label>
       </div>
@@ -122,10 +179,66 @@
     <h6>{{ 'edit' | translate }}{{ pageName | translate }}</h6>
     <form #editForm="ngForm" class="scrollbarstyle">
       <div class="inputArea">
-        <input type="text" name="name" (click)="errorReset()" placeholder="EX: {{ 'position' | translate }}{{ 'name' | translate }}" [ngModel]="selectData.name" required>
+        <input type="text" name="name" (click)="errorReset()" placeholder="EX: {{ '玉山' | translate }}" [ngModel]="selectData.name" required>
         <label>
           <span> * </span>
           {{ 'name' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="rank" (click)="errorReset()" placeholder="EX: {{ '1' | translate }}" [ngModel]="selectData.rank" required>
+        <label>
+          {{ 'rank' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="elevation" (click)="errorReset()" placeholder="EX: {{ '3952' | translate }}" [ngModel]="selectData.elevation" required>
+        <label>
+          {{ 'elevation' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="grade" (click)="errorReset()" placeholder="EX: {{ 'A' | translate }}" [ngModel]="selectData.grade" required>
+        <label>
+          {{ 'grade' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="position" (click)="errorReset()" placeholder="EX: {{ '南投縣' | translate }}" [ngModel]="selectData.position" required>
+        <label>
+          {{ 'position' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="nationalPark" (click)="errorReset()" placeholder="EX: {{ '玉山國家公園' | translate }}" [ngModel]="selectData.nationalPark" required>
+        <label>
+          {{ 'nationalPark' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="latitude" (click)="errorReset()" placeholder="EX: {{ '25.17066' | translate }}" [ngModel]="selectData.latitude" required>
+        <label>
+          {{ 'latitude' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="longitude" (click)="errorReset()" placeholder="EX: {{ '121.553448' | translate }}" [ngModel]="selectData.longitude" required>
+        <label>
+          {{ 'longitude' | translate }}
+          <span>{{ errorName }}</span>
+        </label>
+      </div>
+      <div class="inputArea">
+        <input type="text" name="designation" (click)="errorReset()" placeholder="EX: {{ '五嶽' | translate }}" [ngModel]="selectData.designation" required>
+        <label>
+          {{ 'designation' | translate }}
           <span>{{ errorName }}</span>
         </label>
       </div>

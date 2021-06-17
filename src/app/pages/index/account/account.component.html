@@ -35,10 +35,11 @@
             <td>{{ data?.name }}</td>
             <td>{{ data?.username }}</td>
             <td>
-              <p *ngFor="let role of data?.roles">{{ role?.name }}</p>
+              <span *ngIf="data?.roleId=='1'">{{ 'manager' | translate }}</span>
+              <span *ngIf="data?.roleId!='1'">{{ 'user' | translate }}</span>
             </td>
             <td>
-              <app-index-button *ngIf="btns?.edit&&data?.id!=1&&data?.id!=userData?.user?.id&&data?.enabled" [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
+              <app-index-button *ngIf="btns?.edit&&data?.id!=1&&data?.id!=userData?.user?.id" [text]="'edit'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
               <app-index-button *ngIf="btns?.remove&&data?.id!=1&&data?.id!=userData?.user?.id" [text]="'remove'" [type]="'lightBox'" [data]="data" (lightBoxOpenEvent)="selected($event.datas, $event.ligthBoxType)"></app-index-button>
             </td>
           </tr>
@@ -58,7 +59,8 @@
           <p>{{ 'username' | translate }} : {{ data?.username }}</p>
           <p>
             {{ 'role' | translate }} :
-            <span *ngFor="let role of data?.roles">{{ role?.name }}</span>
+            <span *ngIf="data?.roleId=='1'">{{ 'manager' | translate }}</span>
+            <span *ngIf="data?.roleId!='1'">{{ 'user' | translate }}</span>
           </p>
           <hr/>
           <div>

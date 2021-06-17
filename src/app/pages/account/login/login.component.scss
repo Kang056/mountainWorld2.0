@@ -229,6 +229,50 @@ $colorNFnavi: rgb(123,82,0);
 }
 
 @media (max-width: 812px) {
+  .fullpage{
+    font-size: 12px;
+    margin: 0;
+    background: url('../../../../assets/img/home/cloud.svg');
+    background-repeat: no-repeat;
+    background-size: 150%;
+    color: #FFFFFF;
+    #section0{
+      height: 100vh;
+      position: relative;
+      width: 100%;
+      .wrapper {
+        .scene{
+          display: block;
+          height: 100vh;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          position: relative;
+          background-repeat: no-repeat;
+          background-size: 65%;
+          background-position: center 60%;
+          .layer {
+            display: block;
+            height: 90vh;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            .bannerTitle{
+              background-size: 369px 48px;
+              height: 48px;
+              width: 369px;
+              background-image: url('../../../../assets/img/home/logo/title_light.png');
+              background-repeat: no-repeat;
+              @include absoluteCenter;
+              left: 50%;
+              top: 20vh;
+            }
+          }
+        }
+      }
+    }
+  }
   .login-box{
     // position: unset;
     transform: translate(-50%, -50%);

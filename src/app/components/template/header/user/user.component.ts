@@ -30,12 +30,13 @@ export class UserComponent implements OnInit {
           const formData = new FormData();
           formData.append('password', new1);
           const editData = {
+            id: JSON.parse(sessionStorage.getItem('user')).user.id,
             password: new1,
             enabled: this.userData.user.enabled,
             name: this.userData.user.name,
             roleIds: null,
           };
-          this.accountService.editAccount(JSON.parse(sessionStorage.getItem('user')).user.id, editData)
+          this.accountService.editAccount(editData)
           .subscribe(
             res => {
               alert('editPassword ok');

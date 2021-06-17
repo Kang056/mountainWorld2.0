@@ -17,9 +17,9 @@ export class AccountComponent implements OnInit {
   lightBox = ''; // 燈箱開關
   titles = []; // 主表格表頭
   btns = {
-    add: this.permissions?.accoumt?.button?.add,
-    edit: this.permissions?.accoumt?.button?.edit,
-    remove: this.permissions?.accoumt?.button?.remove,
+    add: this.permissions?.account?.button?.add,
+    edit: this.permissions?.account?.button?.edit,
+    remove: this.permissions?.account?.button?.remove,
   }; // Operation欄位按鈕類型
   sortType = 'number'; // 排序項目
   sequence = true; // 排序形式 (true:升冪, false:降冪)
@@ -161,6 +161,7 @@ export class AccountComponent implements OnInit {
   // 新增
   addAccount(form): void {
     this.errorReset();
+    console.log(form.value);
     this.accountService.addAccount(form.value).subscribe(
       (response) => {
         console.log('add ok', response);
@@ -168,6 +169,7 @@ export class AccountComponent implements OnInit {
         this.lightBox = '';
       },
       (error) => {
+        console.log(error);
         this.errorWork(error);
       }
     );
@@ -176,14 +178,9 @@ export class AccountComponent implements OnInit {
   // 修改
   editAccount(form): void {
     this.errorReset();
-    form.value.roleIds = this.roleDataWork(form.value);
-    form.value.enabled = this.selectData.enabled;
-    const editData: any = {};
-    editData.enabled = form.value.enabled;
-    editData.name = form.value.name;
-    editData.roleIds = form.value.roleIds;
-    console.log('editData', editData);
-    this.accountService.editAccount(this.selectData.id, editData).subscribe(
+    form.value.id = this.selectData.id;
+
+    this.accountService.editAccount(form.value).subscribe(
       (response) => {
         console.log('edit ok', response);
         this.lightBoxClose();
@@ -198,13 +195,18 @@ export class AccountComponent implements OnInit {
 
   // 刪除
   deleteAccount(): void {
-    this.accountService.deleteAccount(this.selectData.id).subscribe(
+    console.log(this.selectData.id);
+    const deleteData = {
+      id: this.selectData.id
+    };
+    this.accountService.deleteAccount(deleteData).subscribe(
       (response) => {
         console.log('remove ok', response);
         this.lightBoxClose();
         this.getAllAccount();
       },
       (error) => {
+        console.log(error);
         this.errorWork(error);
       }
     );

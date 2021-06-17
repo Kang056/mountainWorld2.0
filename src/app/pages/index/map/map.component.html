@@ -6,3 +6,5 @@
     </div>
   </div>
 </div>
+<app-overlay [lightBox]="lightBox" (lightBoxCloseEvent)="lightBoxClose()"></app-overlay>
+<app-chart-box #chartBox [lightBox]="lightBox" (lightBoxCloseEvent)="lightBoxClose()"></app-chart-box>
