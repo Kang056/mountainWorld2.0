@@ -112,25 +112,23 @@ export class MapComponent implements OnInit, OnDestroy {
 
 
   getGPX(elevation){
-    if (elevation === '3952' || elevation === '3886' || elevation === '3560' || elevation === '3496' || elevation === '3492') {
-      const xhr = new XMLHttpRequest();
-      xhr.onload =  () => {
-        const gpx = new gpxParser();
-        gpx.parse(xhr.response);
-        const totalDistance = gpx.tracks[0].distance.total; // 總距離
-        this.points = gpx.tracks[0].points;
-        const geoJSON = gpx.toGeoJSON();
-        // console.log('gpx', gpx);
-        console.log('points', this.points);
-        // console.log('points', gpx.tracks[0].points);
-        // console.log('totalDistance', totalDistance);
-        // console.log('geoJSON', geoJSON);
-        // console.log(geoJSON.features[0].geometry.coordinates);
-        (window as any).drawRecordMark(this.points);
-      };
-      xhr.open('get', `assets/gpxs/${elevation}.gpx`, true);
-      xhr.send(null);
-    }
+    const xhr = new XMLHttpRequest();
+    xhr.onload =  () => {
+      const gpx = new gpxParser();
+      gpx.parse(xhr.response);
+      const totalDistance = gpx.tracks[0].distance.total; // 總距離
+      this.points = gpx.tracks[0].points;
+      const geoJSON = gpx.toGeoJSON();
+      // console.log('gpx', gpx);
+      console.log('points', this.points);
+      // console.log('points', gpx.tracks[0].points);
+      // console.log('totalDistance', totalDistance);
+      // console.log('geoJSON', geoJSON);
+      // console.log(geoJSON.features[0].geometry.coordinates);
+      (window as any).drawRecordMark(this.points);
+    };
+    xhr.open('get', `assets/gpxs/${elevation}.gpx`, true);
+    xhr.send(null);
   }
 
 
