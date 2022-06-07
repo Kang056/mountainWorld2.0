@@ -171,6 +171,7 @@ export class MapComponent implements OnInit, OnDestroy {
       console.log('表單沒錯', err);
     }
   }
+  //git6
   ngOnInit(): void {
     this.mapInit();
     this.getAllMountain();
