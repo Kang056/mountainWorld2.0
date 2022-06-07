@@ -187,7 +187,7 @@ export class MapComponent implements OnInit, OnDestroy {
       loadAngularFunction: (elevation) => (this.elevationChart(elevation)),
     };
   }
-
+// git3
   ngOnDestroy(): void {
     (window as any).resetOpenStreeMap();
   }
