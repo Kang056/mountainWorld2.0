@@ -191,5 +191,5 @@ export class MapComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     (window as any).resetOpenStreeMap();
   }
-
+// git test2
 }
